@@ -12,6 +12,7 @@ namespace Solo.Domain.Repository
         UserBo GetUserByName(string username);
         List<string> GetRoleForUser(string username);
         void AddUser(NalogBo nalog);
+        bool isFree(NalogBo nalog);
 
     }
 }

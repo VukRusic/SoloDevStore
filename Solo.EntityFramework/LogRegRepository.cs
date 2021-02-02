@@ -20,7 +20,6 @@ namespace Solo.EntityFramework
             userModel.Vrsta = nalog.Vrsta;
 
             soloEntities.Users.Add(userModel);
-            soloEntities.SaveChanges();
 
             Nalog nalogModel = new Nalog();
             nalogModel.Id = nalog.Id;
@@ -48,6 +47,11 @@ namespace Solo.EntityFramework
                 Password = user.Password,
                 Role = user.Vrsta
             };
+        }
+
+        public bool isFree(NalogBo nalog)
+        {
+            return !soloEntities.Users.Any(t => t.Username == nalog.Username);
         }
 
         public bool isValid(UserBo userBo)

@@ -45,6 +45,21 @@ namespace Solo.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Registration(NalogBo user)
+        {
+            if (logregRepo.isFree(user))
+            {
+                logregRepo.AddUser(user);
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Useti username je zauzet");
+                return View();
+            }
+        }
+
        
     }
 }
