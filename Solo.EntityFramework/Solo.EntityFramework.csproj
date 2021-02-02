@@ -49,6 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LogRegRepository.cs" />
+    <Compile Include="Nalog.cs">
+      <DependentUpon>SoloEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SoloEntity.Context.cs">
       <AutoGen>True</AutoGen>
@@ -64,6 +67,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SoloEntity.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>SoloEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
       <DependentUpon>SoloEntity.tt</DependentUpon>

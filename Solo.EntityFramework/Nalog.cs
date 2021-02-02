@@ -12,13 +12,13 @@ namespace Solo.EntityFramework
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Nalog
     {
         public int Id { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Vrsta { get; set; }
+        public string Ime { get; set; }
+        public string Prezime { get; set; }
+        public string JMBG { get; set; }
     
-        public virtual Nalog Nalog { get; set; }
+        public virtual User User { get; set; }
     }
 }

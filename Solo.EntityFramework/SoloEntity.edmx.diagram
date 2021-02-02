@@ -6,6 +6,9 @@
     <edmx:Diagrams>
       <Diagram DiagramId="fc80bddc24ca41c18eeca86a522124f8" Name="Diagram1">
         <EntityTypeShape EntityType="SoloModel.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoloModel.Nalog" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SoloModel.sysdiagram" Width="1.5" PointX="0.75" PointY="3.75" />
+        <AssociationConnector Association="SoloModel.FK_Nalog_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

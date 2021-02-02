@@ -11,7 +11,7 @@ namespace Solo.Domain.Repository
         bool isValid(UserBo userBo);
         UserBo GetUserByName(string username);
         List<string> GetRoleForUser(string username);
-        void AddUser(UserBo userBo);
+        void AddUser(NalogBo nalog);
 
     }
 }

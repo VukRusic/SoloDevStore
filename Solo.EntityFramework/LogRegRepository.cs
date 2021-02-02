@@ -11,9 +11,25 @@ namespace Solo.EntityFramework
     public class LogRegRepository : ILogRegRepository
     {
         private SoloEntities soloEntities = new SoloEntities();
-        public void AddUser(UserBo userBo)
-        {
-            throw new NotImplementedException();
+        public void AddUser(NalogBo nalog)
+        { 
+            User userModel = new User();
+            userModel.Id = nalog.Id;
+            userModel.Username = nalog.Username;
+            userModel.Password = nalog.Password;
+            userModel.Vrsta = nalog.Vrsta;
+
+            soloEntities.Users.Add(userModel);
+            soloEntities.SaveChanges();
+
+            Nalog nalogModel = new Nalog();
+            nalogModel.Id = nalog.Id;
+            nalogModel.Ime = nalog.Ime;
+            nalogModel.Prezime = nalog.Prezime;
+            nalogModel.JMBG = nalog.JMBG;
+
+            soloEntities.Nalogs.Add(nalogModel);
+            soloEntities.SaveChanges();
         }
 
         public List<string> GetRoleForUser(string username)
