@@ -11,7 +11,7 @@ namespace Solo.Controllers
     [Authorize]
     public class KorisnikController : Controller
     {
-        [Authorize(Roles = "Korisnik")]
+        //[Authorize(Roles = "Korisnik")]
         public ActionResult Index()
         {
             HttpCookie httpCookie = Request.Cookies["additionalCookie"];
