@@ -40,6 +40,11 @@ namespace Solo.Controllers
             }
         }
 
+        public ActionResult Registracion()
+        {
+            return View();
+        }
+
        
     }
 }
