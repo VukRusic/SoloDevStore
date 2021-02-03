@@ -10,7 +10,7 @@ namespace Solo.Domain.Repository
     {
         IEnumerable<ProizvodBo> GetAll();
         ProizvodBo GetProizvodById(int id);
-        IEnumerable<ProizvodBo> GetProizvodByTema(string tema);
+        IEnumerable<ProizvodBo> GetProizvodByZanr(string zanr);
 
     }
 }

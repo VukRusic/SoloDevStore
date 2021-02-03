@@ -44,42 +44,39 @@
             <label class="col-form-label">Naziv</label>
             <div>
                 @Html.DropDownList(
-                "Tema",
-                new SelectList(@ViewBag.Tema, "vrednost"),
-                "Selektuj naziv proizvoda",
+                "Zanr",
+                new SelectList(@ViewBag.Zanr, "vrednost"),
+                "Selektuj zanr proizvoda",
                 new
                      {
-                    @id = "dropDownTeme",
+                    @id = "dropDownZanr",
                          @class = "form-control",
-                    @onchange = "OnSelectedTema(this.value)"
+                    @onchange = "OnSelectedZanr(this.value)"
                      })
             </div>
-        </div>
-        <div class="col-md-4">
-            <p id="proveratext"></p>
         </div>
     </div>
 
     <br />
-    <div id="igrice">
-        @{Html.RenderAction("GetProizvodBySelectedTema", "Korisnik", new { tema = "" });}
+    <div id="pretraga">
+        @{Html.RenderAction("GetProizvodBySelectedZanr", "Korisnik", new { zanr = "" });}
     </div>
 </div>
 
 <script>
-        function OnSelectedTema(tema) {
-            var Tema = tema;
+        function OnSelectedZanr(zanr) {
+            var Zanr = zanr;
 
-        if(Tema === "")
-            {
-            Tema = "";
+        if(Zanr === "")
+        {
+            Zanr = "";
             }
             
             $.ajax({
-                url: '@Url.Action("GetProizvodBySelectedTema")',
-                data: { tema: Tema },
+                url: '@Url.Action("GetProizvodBySelectedZanr")',
+                data: { zanr: Zanr },
                 success:   function(result) {
-                    $('#igrice').html(result);
+                    $('#pretraga').html(result);
                 }
             });
         }
