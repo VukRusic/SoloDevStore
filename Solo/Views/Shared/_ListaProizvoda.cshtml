@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Solo.Domain.ProizvodBo>
+
+
+<table class="table" style="color:#e3e3e3">
+    <tr>
+        <th>
+            
+        </th>
+        <th>
+            Naziv
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Zanr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BrojIgraca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrepStarDoba)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cena)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    string source = item.Tema + ".jpg";
+    <tr>
+        <td style="width:250px">
+            <img src="~/Img/@source" style="width:200px; height:112px" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tema)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Zanr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BrojIgraca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrepStarDoba)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cena)
+        </td>
+        <td>
+            @Html.ActionLink("Detalji", "Edit", null, new { @class = "btn btn-secondary" })
+        </td>
+    </tr>
+}
+
+</table>
+<hr />

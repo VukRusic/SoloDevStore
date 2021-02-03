@@ -1,4 +1,6 @@
 ﻿using Solo.Domain;
+using Solo.Domain.Repository;
+using Solo.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +13,7 @@ namespace Solo.Controllers
     [Authorize]
     public class KorisnikController : Controller
     {
+        private readonly IProizvod _proizvodRepository = new ProizvodRepository();
         //[Authorize(Roles = "Korisnik")]
         public ActionResult Index()
         {
@@ -28,6 +31,11 @@ namespace Solo.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Login","LogReg");
+        }
+
+        public ActionResult GetAllProizvods()
+        {
+            return PartialView("_ListaProizvoda", _proizvodRepository.GetAll());
         }
     }
 }

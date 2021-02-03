@@ -3,7 +3,7 @@
     width: 100%;
 }
 
-label, h3, footer {
+label, h3, footer, a {
     color: #e7e7e7;
 }
 
@@ -35,3 +35,6 @@ hr {
 .navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
     color: #e7e7e7;
 }
+
+
+

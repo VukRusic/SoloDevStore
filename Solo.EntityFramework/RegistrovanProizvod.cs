@@ -12,14 +12,17 @@ namespace Solo.EntityFramework
     using System;
     using System.Collections.Generic;
     
-    public partial class Nalog
+    public partial class RegistrovanProizvod
     {
         public int Id { get; set; }
-        public string Ime { get; set; }
-        public string Prezime { get; set; }
-        public string JMBG { get; set; }
+        public int IdDevelopera { get; set; }
+        public string Tema { get; set; }
+        public string Zanr { get; set; }
+        public int BrojIgraca { get; set; }
+        public int PrepStarDoba { get; set; }
+        public decimal Cena { get; set; }
+        public int Procenat { get; set; }
     
-        public virtual User User { get; set; }
         public virtual Developer Developer { get; set; }
     }
 }

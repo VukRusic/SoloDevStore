@@ -48,11 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Developer.cs">
+      <DependentUpon>SoloEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="LogRegRepository.cs" />
     <Compile Include="Nalog.cs">
       <DependentUpon>SoloEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProizvodRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrovanProizvod.cs">
+      <DependentUpon>SoloEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="SoloEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

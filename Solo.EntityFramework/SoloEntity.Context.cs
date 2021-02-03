@@ -28,5 +28,7 @@ namespace Solo.EntityFramework
         public DbSet<User> Users { get; set; }
         public DbSet<Nalog> Nalogs { get; set; }
         public DbSet<sysdiagram> sysdiagrams { get; set; }
+        public DbSet<Developer> Developers { get; set; }
+        public DbSet<RegistrovanProizvod> RegistrovanProizvods { get; set; }
     }
 }
