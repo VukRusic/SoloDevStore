@@ -1,10 +1,11 @@
 ﻿body {
     background-color: #333;
     width: 100%;
+    color: #e7e7e7;
 }
 
 label, h3, footer, a {
-    color: #e7e7e7;
+    color: #c9c9c9;
 }
 
 .btn-primary {
@@ -35,6 +36,8 @@ hr {
 .navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
     color: #e7e7e7;
 }
+
+
 
 
 

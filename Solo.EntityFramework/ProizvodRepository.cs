@@ -29,6 +29,17 @@ namespace Solo.EntityFramework
             return Map(proizvod);
         }
 
+        public IEnumerable<ProizvodBo> GetProizvodByTema(string tema)
+        {
+            List<ProizvodBo> proizvods = new List<ProizvodBo>();
+            IEnumerable<RegistrovanProizvod> proizvodi = soloEntities.RegistrovanProizvods.Where(t => t.Tema == tema).ToList();
+            foreach (RegistrovanProizvod proizvod in proizvodi)
+            {
+                proizvods.Add(Map(proizvod));
+            }
+            return proizvods;
+        }
+
         private ProizvodBo Map(RegistrovanProizvod proizvod)
         {
             ProizvodBo proizvodBo = new ProizvodBo()

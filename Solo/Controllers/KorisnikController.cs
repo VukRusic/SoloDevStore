@@ -24,6 +24,7 @@ namespace Solo.Controllers
                 Password = httpCookie.Values["password"],
                 Role = httpCookie.Values["role"]
             };
+            ViewBag.Tema = _proizvodRepository.GetAll().Select(te => te.Tema).Distinct().ToList();
             return View(user);
         }
 
@@ -36,6 +37,24 @@ namespace Solo.Controllers
         public ActionResult GetAllProizvods()
         {
             return PartialView("_ListaProizvoda", _proizvodRepository.GetAll());
+        }
+
+        public ActionResult GetProizvodBySelectedTema(string tema)
+        {
+            if (tema == "")
+            {
+                return PartialView("_ListaProizvoda", _proizvodRepository.GetAll());
+            }
+            else
+            {
+                return PartialView("_ListaProizvoda", _proizvodRepository.GetProizvodByTema(tema));
+            }
+        }
+
+        public ActionResult Detalji(int id)
+        {
+            ProizvodBo proizvod = _proizvodRepository.GetProizvodById(id);
+            return View(proizvod);
         }
     }
 }

@@ -39,8 +39,50 @@
             <button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
         </div>
     </div><br />
-    <div>
-        @{Html.RenderAction("GetAllProizvods", "Korisnik");}
+    <div class="row">
+        <div class="col-md-4" id="temePretraga">
+            <label class="col-form-label">Naziv</label>
+            <div>
+                @Html.DropDownList(
+                "Tema",
+                new SelectList(@ViewBag.Tema, "vrednost"),
+                "Selektuj naziv proizvoda",
+                new
+                     {
+                    @id = "dropDownTeme",
+                         @class = "form-control",
+                    @onchange = "OnSelectedTema(this.value)"
+                     })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <p id="proveratext"></p>
+        </div>
+    </div>
+
+    <br />
+    <div id="igrice">
+        @{Html.RenderAction("GetProizvodBySelectedTema", "Korisnik", new { tema = "" });}
     </div>
 </div>
+
+<script>
+        function OnSelectedTema(tema) {
+            var Tema = tema;
+
+        if(Tema === "")
+            {
+            Tema = "";
+            }
+            
+            $.ajax({
+                url: '@Url.Action("GetProizvodBySelectedTema")',
+                data: { tema: Tema },
+                success:   function(result) {
+                    $('#igrice').html(result);
+                }
+            });
+        }
+</script>
+
 

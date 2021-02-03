@@ -46,7 +46,7 @@
             @Html.DisplayFor(modelItem => item.Cena)
         </td>
         <td>
-            @Html.ActionLink("Detalji", "Edit", null, new { @class = "btn btn-secondary" })
+            @Html.ActionLink("Detalji", "Detalji", "Korisnik", new { id = item.Id }, new { @class = "btn btn-secondary" })
         </td>
     </tr>
 }
