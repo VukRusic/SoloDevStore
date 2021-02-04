@@ -286,6 +286,8 @@
     <Content Include="Views\LogReg\Registration.cshtml" />
     <Content Include="Views\Shared\_ListaProizvoda.cshtml" />
     <Content Include="Views\Korisnik\Detalji.cshtml" />
+    <Content Include="Views\Shared\_ListaRecenzija.cshtml" />
+    <Content Include="Views\Korisnik\Recenzija.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

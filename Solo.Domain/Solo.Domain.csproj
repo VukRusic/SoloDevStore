@@ -45,8 +45,10 @@
     <Compile Include="NalogBo.cs" />
     <Compile Include="ProizvodBo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecenzijaBo.cs" />
     <Compile Include="Repository\ILogRegRepository.cs" />
     <Compile Include="Repository\IProizvod.cs" />
+    <Compile Include="Repository\IRecenzija.cs" />
     <Compile Include="UserBo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

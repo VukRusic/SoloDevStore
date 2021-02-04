@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Solo.Domain.RecenzijaBo>
+
+<table class="table" style="color:#e3e3e3">
+    <tr>
+        <th>
+            Username:
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Komentar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ocena)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Datum)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UsernameKorisnika)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Komentar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ocena)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Datum)
+        </td>
+
+    </tr>
+}
+
+</table>

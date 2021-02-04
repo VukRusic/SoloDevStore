@@ -4,82 +4,102 @@
     ViewBag.Title = "Detalji";
 }
 
-<div>
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="#">SoloDev</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="#">SoloDev</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Store</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Help</a>
-                </li>
-            </ul>
-            @if (User.Identity.IsAuthenticated)
-            {
-                <ul class="navbar-right navbar-nav ">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link mr-5"><i class="far fa-user"></i> @User.Identity.Name </a>
+                        <a class="nav-link" href="#">Store</a>
                     </li>
                     <li class="nav-item active">
-                        @Html.ActionLink("Sign out", "LogOut", "Korisnik", null, new { @class = "nav-link" })
+                        <a class="nav-link" href="#">Help</a>
                     </li>
                 </ul>
-            }
-        </div>
-    </nav><br /><br />
-    <div class="row" style="color: #e7e7e7">
-        <div class="col-md-4">
-            @{ string source = Model.Tema + ".jpg";}
-            <img src="~/Img/@source" class="rounded img-thumbnail" style="width:500px; height:230px;" alt="proizvod"/>
-            <div class="mt-5 text-center">
-                O proizvodu:
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <ul class="navbar-right navbar-nav ">
+                        <li class="nav-item active">
+                            <a class="nav-link mr-5"><i class="far fa-user"></i> @User.Identity.Name </a>
+                        </li>
+                        <li class="nav-item active">
+                            @Html.ActionLink("Sign out", "LogOut", "Korisnik", null, new { @class = "nav-link" })
+                        </li>
+                    </ul>
+                }
             </div>
-        </div>
-        <div class="col-md-8">
-            <div class="row" style="height:220px">
-                <div class="col-md-8">
-                    <p>Ovde treba da stoji opis koji se cita iz nepostojeceg polja u tabeli proizvod</p>
+        </nav><br /><br />
+        <div class="row" style="color: #e7e7e7">
+            <div class="col-md-4">
+                @{ string source = Model.Naziv + ".jpg";}
+                <img src="~/Img/@source" class="rounded img-thumbnail" style="width:500px; height:230px;" alt="proizvod" />
+                <div class="mt-5 mr-5 text-right">
+                    O proizvodu:
                 </div>
-                <div class="col-md-4 mt-5">
-                    <div>
+            </div>
+            <div class="col-md-8">
+                <div class="row" style="height:260px">
+                    <div class="col-md-8">
+                        @Html.DisplayNameFor(model => model.Opis):<br />
+                        @Html.DisplayFor(model => model.Opis)
+                    </div>
+                    <div class="col-md-4 mt-5">
                         <div>
-                            @Html.DisplayFor(model => model.Cena).00 din
+                            <div>
+                                @Html.DisplayFor(model => model.Cena).00 din
+                            </div>
+                        </div>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary">Kupi</button>
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-heart"></i>
+                                @Html.ActionLink("Oceni","Recenzija")
+                            </button>
                         </div>
                     </div>
-                    <div class="btn-group">
-                        <button class="btn btn-primary" type="submit">Kupi</button>
-                        <button class="btn btn-primary" type="submit"><i class="fas fa-heart"></i></button>
+                </div>
+                <hr />
+                <div>
+                    <div>
+                        Naziv: @Html.DisplayFor(model => model.Naziv)
+                    </div>
+                    <div>
+                        @Html.DisplayNameFor(model => model.Zanr): @Html.DisplayFor(model => model.Zanr)
+                    </div>
+
+                    <div>
+                        Broj igraca: @Html.DisplayFor(model => model.BrojIgraca)
+                    </div>
+
+                    <div>
+                        Preporuceno starosno doba: @Html.DisplayFor(model => model.PrepStarDoba) godina
+                    </div>
+                    <div>
+                        Developer: @ViewBag.Developer
                     </div>
                 </div>
             </div>
-            <hr />
-            <div>
-                <div>
-                    Naziv: @Html.DisplayFor(model => model.Tema)
-                </div>
-                <div>
-                    @Html.DisplayNameFor(model => model.Zanr): @Html.DisplayFor(model => model.Zanr)
-                </div>
-
-                <div>
-                    @Html.DisplayNameFor(model => model.BrojIgraca): @Html.DisplayFor(model => model.BrojIgraca)
-                </div>
-
-                <div>
-                    @Html.DisplayNameFor(model => model.PrepStarDoba): @Html.DisplayFor(model => model.PrepStarDoba)
-                </div>
-
+        </div><br /><br />
+        <div class="row">
+            <div class="col-md-4 border ml-3">
+                <p><h5>Recenzije:</h5></p>
+                @{Html.RenderAction("GetAllRecenzijasByProizvodId", "Korisnik", new { ViewBag.Proizvod }); }
             </div>
         </div>
+        <p class="mt-5">
+            <hr />
+            <i class="fas fa-arrow-circle-left"></i>  @Html.ActionLink("Nazad", "Index")
+        </p>
     </div>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<script>
+    function Oceni() {
+        @{Url.Action("Recenzija"); } //Nece da pokrene action kako bi otvorio novi view za recenziju
+            console.log("radi");
+    }
+
+</script>

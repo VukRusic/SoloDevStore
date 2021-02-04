@@ -55,7 +55,7 @@ namespace Solo.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "Useti username je zauzet");
+                ModelState.AddModelError("", "Uneti username je zauzet");
                 return View();
             }
         }

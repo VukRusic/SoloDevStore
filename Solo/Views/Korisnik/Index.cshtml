@@ -34,9 +34,9 @@
         </div>
     </nav><br /><br />
     <div class="input-group" style="width: 40%">
-        <input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon2">
+        <input id="poljeZaIme" type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon2">
         <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
+            <button class="btn btn-outline-secondary" type="button" onclick="PretragaPoImenu()"><i class="fas fa-search"></i></button>
         </div>
     </div><br />
     <div class="row">
@@ -64,14 +64,14 @@
 </div>
 
 <script>
-        function OnSelectedZanr(zanr) {
+    function OnSelectedZanr(zanr) {
             var Zanr = zanr;
 
         if(Zanr === "")
         {
             Zanr = "";
-            }
-            
+        }
+
             $.ajax({
                 url: '@Url.Action("GetProizvodBySelectedZanr")',
                 data: { zanr: Zanr },
@@ -79,7 +79,22 @@
                     $('#pretraga').html(result);
                 }
             });
+    }
+
+    function PretragaPoImenu() {
+        var imePretraga = document.getElementById('poljeZaIme').value;
+        if (imePretraga === "") {
+            imePretraga=""
         }
+        $.ajax({
+            url: '@Url.Action("GetProzivodByEnteredName")',
+            data: { ime: imePretraga },
+            success: function (result) {
+                $('#pretraga').html(result);
+            }
+        })
+    }
+
 </script>
 
 

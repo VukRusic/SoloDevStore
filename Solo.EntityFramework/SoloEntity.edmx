@@ -10,7 +10,14 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Racun" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Racun" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Korisnik">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Racun" Type="nvarchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="Nalog">
           <Key>
@@ -21,18 +28,30 @@
           <Property Name="Prezime" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="JMBG" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
+        <EntityType Name="Recenzija">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProizvoda" Type="int" Nullable="false" />
+          <Property Name="IdKorisnika" Type="int" Nullable="false" />
+          <Property Name="Komentar" Type="nvarchar(max)" />
+          <Property Name="Ocena" Type="int" Nullable="false" />
+          <Property Name="Datum" Type="datetime" />
+        </EntityType>
         <EntityType Name="RegistrovanProizvod">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdDevelopera" Type="int" Nullable="false" />
-          <Property Name="Tema" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Zanr" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="BrojIgraca" Type="int" Nullable="false" />
           <Property Name="PrepStarDoba" Type="int" Nullable="false" />
           <Property Name="Cena" Type="money" Nullable="false" />
           <Property Name="Procenat" Type="int" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -65,6 +84,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Korisnik_Nalog">
+          <End Role="Nalog" Type="Self.Nalog" Multiplicity="1" />
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Nalog">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Korisnik">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Nalog_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Nalog" Type="Self.Nalog" Multiplicity="0..1" />
@@ -74,6 +105,30 @@
             </Principal>
             <Dependent Role="Nalog">
               <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recenzija_Korisnik">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
+          <End Role="Recenzija" Type="Self.Recenzija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Recenzija">
+              <PropertyRef Name="IdKorisnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recenzija_RegistrovanProizvod">
+          <End Role="RegistrovanProizvod" Type="Self.RegistrovanProizvod" Multiplicity="1" />
+          <End Role="Recenzija" Type="Self.Recenzija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegistrovanProizvod">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Recenzija">
+              <PropertyRef Name="IdProizvoda" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -91,7 +146,9 @@
         </Association>
         <EntityContainer Name="SoloModelStoreContainer">
           <EntitySet Name="Developer" EntityType="Self.Developer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Korisnik" EntityType="Self.Korisnik" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Nalog" EntityType="Self.Nalog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recenzija" EntityType="Self.Recenzija" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegistrovanProizvod" EntityType="Self.RegistrovanProizvod" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -99,9 +156,21 @@
             <End Role="Nalog" EntitySet="Nalog" />
             <End Role="Developer" EntitySet="Developer" />
           </AssociationSet>
+          <AssociationSet Name="FK_Korisnik_Nalog" Association="Self.FK_Korisnik_Nalog">
+            <End Role="Nalog" EntitySet="Nalog" />
+            <End Role="Korisnik" EntitySet="Korisnik" />
+          </AssociationSet>
           <AssociationSet Name="FK_Nalog_User" Association="Self.FK_Nalog_User">
             <End Role="User" EntitySet="User" />
             <End Role="Nalog" EntitySet="Nalog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recenzija_Korisnik" Association="Self.FK_Recenzija_Korisnik">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="Recenzija" EntitySet="Recenzija" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recenzija_RegistrovanProizvod" Association="Self.FK_Recenzija_RegistrovanProizvod">
+            <End Role="RegistrovanProizvod" EntitySet="RegistrovanProizvod" />
+            <End Role="Recenzija" EntitySet="Recenzija" />
           </AssociationSet>
           <AssociationSet Name="FK_RegistrovanProizvod_Developer" Association="Self.FK_RegistrovanProizvod_Developer">
             <End Role="Developer" EntitySet="Developer" />
@@ -140,6 +209,20 @@
             <End Role="Developer" EntitySet="Developers" />
             <End Role="RegistrovanProizvod" EntitySet="RegistrovanProizvods" />
           </AssociationSet>
+          <EntitySet Name="Korisniks" EntityType="SoloModel.Korisnik" />
+          <AssociationSet Name="FK_Korisnik_Nalog" Association="SoloModel.FK_Korisnik_Nalog">
+            <End Role="Nalog" EntitySet="Nalogs" />
+            <End Role="Korisnik" EntitySet="Korisniks" />
+          </AssociationSet>
+          <EntitySet Name="Recenzijas" EntityType="SoloModel.Recenzija" />
+          <AssociationSet Name="FK_Recenzija_Korisnik" Association="SoloModel.FK_Recenzija_Korisnik">
+            <End Role="Korisnik" EntitySet="Korisniks" />
+            <End Role="Recenzija" EntitySet="Recenzijas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recenzija_RegistrovanProizvod" Association="SoloModel.FK_Recenzija_RegistrovanProizvod">
+            <End Role="RegistrovanProizvod" EntitySet="RegistrovanProizvods" />
+            <End Role="Recenzija" EntitySet="Recenzijas" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Nalog">
           <Key>
@@ -151,6 +234,7 @@
           <Property Name="JMBG" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="User" Relationship="SoloModel.FK_Nalog_User" FromRole="Nalog" ToRole="User" />
           <NavigationProperty Name="Developer" Relationship="SoloModel.FK_Developer_Nalog" FromRole="Nalog" ToRole="Developer" />
+          <NavigationProperty Name="Korisnik" Relationship="SoloModel.FK_Korisnik_Nalog" FromRole="Nalog" ToRole="Korisnik" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -179,7 +263,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Racun" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Racun" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Nalog" Relationship="SoloModel.FK_Developer_Nalog" FromRole="Developer" ToRole="Nalog" />
           <NavigationProperty Name="RegistrovanProizvods" Relationship="SoloModel.FK_RegistrovanProizvod_Developer" FromRole="Developer" ToRole="RegistrovanProizvod" />
         </EntityType>
@@ -189,13 +273,15 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdDevelopera" Type="Int32" Nullable="false" />
-          <Property Name="Tema" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Zanr" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="BrojIgraca" Type="Int32" Nullable="false" />
           <Property Name="PrepStarDoba" Type="Int32" Nullable="false" />
           <Property Name="Cena" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="Procenat" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Developer" Relationship="SoloModel.FK_RegistrovanProizvod_Developer" FromRole="RegistrovanProizvod" ToRole="Developer" />
+          <Property Name="Naziv" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Recenzijas" Relationship="SoloModel.FK_Recenzija_RegistrovanProizvod" FromRole="RegistrovanProizvod" ToRole="Recenzija" />
         </EntityType>
         <Association Name="FK_Developer_Nalog">
           <End Type="SoloModel.Nalog" Role="Nalog" Multiplicity="1" />
@@ -218,6 +304,64 @@
             </Principal>
             <Dependent Role="RegistrovanProizvod">
               <PropertyRef Name="IdDevelopera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Korisnik">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Racun" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Nalog" Relationship="SoloModel.FK_Korisnik_Nalog" FromRole="Korisnik" ToRole="Nalog" />
+          <NavigationProperty Name="Recenzijas" Relationship="SoloModel.FK_Recenzija_Korisnik" FromRole="Korisnik" ToRole="Recenzija" />
+        </EntityType>
+        <Association Name="FK_Korisnik_Nalog">
+          <End Type="SoloModel.Nalog" Role="Nalog" Multiplicity="1" />
+          <End Type="SoloModel.Korisnik" Role="Korisnik" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Nalog">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Korisnik">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Recenzija">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProizvoda" Type="Int32" Nullable="false" />
+          <Property Name="IdKorisnika" Type="Int32" Nullable="false" />
+          <Property Name="Komentar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ocena" Type="Int32" Nullable="false" />
+          <Property Name="Datum" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Korisnik" Relationship="SoloModel.FK_Recenzija_Korisnik" FromRole="Recenzija" ToRole="Korisnik" />
+          <NavigationProperty Name="RegistrovanProizvod" Relationship="SoloModel.FK_Recenzija_RegistrovanProizvod" FromRole="Recenzija" ToRole="RegistrovanProizvod" />
+        </EntityType>
+        <Association Name="FK_Recenzija_Korisnik">
+          <End Type="SoloModel.Korisnik" Role="Korisnik" Multiplicity="1" />
+          <End Type="SoloModel.Recenzija" Role="Recenzija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Recenzija">
+              <PropertyRef Name="IdKorisnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recenzija_RegistrovanProizvod">
+          <End Type="SoloModel.RegistrovanProizvod" Role="RegistrovanProizvod" Multiplicity="1" />
+          <End Type="SoloModel.Recenzija" Role="Recenzija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegistrovanProizvod">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Recenzija">
+              <PropertyRef Name="IdProizvoda" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -269,13 +413,34 @@
           <EntitySetMapping Name="RegistrovanProizvods">
             <EntityTypeMapping TypeName="SoloModel.RegistrovanProizvod">
               <MappingFragment StoreEntitySet="RegistrovanProizvod">
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
                 <ScalarProperty Name="Procenat" ColumnName="Procenat" />
                 <ScalarProperty Name="Cena" ColumnName="Cena" />
                 <ScalarProperty Name="PrepStarDoba" ColumnName="PrepStarDoba" />
                 <ScalarProperty Name="BrojIgraca" ColumnName="BrojIgraca" />
                 <ScalarProperty Name="Zanr" ColumnName="Zanr" />
-                <ScalarProperty Name="Tema" ColumnName="Tema" />
                 <ScalarProperty Name="IdDevelopera" ColumnName="IdDevelopera" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Korisniks">
+            <EntityTypeMapping TypeName="SoloModel.Korisnik">
+              <MappingFragment StoreEntitySet="Korisnik">
+                <ScalarProperty Name="Racun" ColumnName="Racun" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recenzijas">
+            <EntityTypeMapping TypeName="SoloModel.Recenzija">
+              <MappingFragment StoreEntitySet="Recenzija">
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="Ocena" ColumnName="Ocena" />
+                <ScalarProperty Name="Komentar" ColumnName="Komentar" />
+                <ScalarProperty Name="IdKorisnika" ColumnName="IdKorisnika" />
+                <ScalarProperty Name="IdProizvoda" ColumnName="IdProizvoda" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

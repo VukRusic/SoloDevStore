@@ -11,6 +11,7 @@ namespace Solo.Domain.Repository
         IEnumerable<ProizvodBo> GetAll();
         ProizvodBo GetProizvodById(int id);
         IEnumerable<ProizvodBo> GetProizvodByZanr(string zanr);
-
+        IEnumerable<ProizvodBo> GetProzivodByIme(string ime);
+        string GetDeveloperByProizvodId(int id);
     }
 }

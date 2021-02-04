@@ -22,5 +22,6 @@ namespace Solo.Domain
         public string Password { get; set; }
         [Required]
         public string Vrsta { get; set; }
+        public string Racun { get; set; }
     }
 }

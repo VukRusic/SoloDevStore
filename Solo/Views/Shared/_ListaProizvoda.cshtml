@@ -25,13 +25,13 @@
     </tr>
 
 @foreach (var item in Model) {
-    string source = item.Tema + ".jpg";
+    string source = item.Naziv + ".jpg";
     <tr>
         <td style="width:250px">
             <img src="~/Img/@source" style="width:200px; height:112px" />
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Tema)
+            @Html.DisplayFor(modelItem => item.Naziv)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Zanr)

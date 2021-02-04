@@ -28,6 +28,21 @@ namespace Solo.EntityFramework
             nalogModel.JMBG = nalog.JMBG;
 
             soloEntities.Nalogs.Add(nalogModel);
+
+            if(nalog.Vrsta == "Korisnik")
+            {
+                Korisnik korisnikModel = new Korisnik();
+                korisnikModel.Id = nalog.Id;
+                korisnikModel.Racun = "1234";
+                soloEntities.Korisniks.Add(korisnikModel);
+            }
+            else if(nalog.Vrsta == "Developer")
+            {
+                Developer developerModel = new Developer();
+                developerModel.Id = nalog.Id;
+                developerModel.Racun = "4321";
+                soloEntities.Developers.Add(developerModel);
+            }
             soloEntities.SaveChanges();
         }
 

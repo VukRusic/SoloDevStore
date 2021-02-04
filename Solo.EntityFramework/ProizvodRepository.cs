@@ -40,6 +40,17 @@ namespace Solo.EntityFramework
             return proizvods;
         }
 
+        public IEnumerable<ProizvodBo> GetProzivodByIme(string ime)
+        {
+            List<ProizvodBo> proizvods = new List<ProizvodBo>();
+            IEnumerable<RegistrovanProizvod> proizvodi = soloEntities.RegistrovanProizvods.Where(p => p.Naziv.Contains(ime));
+            foreach (RegistrovanProizvod proizvod in proizvodi)
+            {
+                proizvods.Add(Map(proizvod));
+            }
+            return proizvods;
+        }
+
         private ProizvodBo Map(RegistrovanProizvod proizvod)
         {
             ProizvodBo proizvodBo = new ProizvodBo()
@@ -48,13 +59,20 @@ namespace Solo.EntityFramework
                 IdDev = proizvod.IdDevelopera,
                 BrojIgraca = proizvod.BrojIgraca,
                 Zanr = proizvod.Zanr,
-                Tema = proizvod.Tema,
+                Naziv = proizvod.Naziv,
                 PrepStarDoba = proizvod.PrepStarDoba,
                 Procenat = proizvod.Procenat,
-                Cena = (int)proizvod.Cena
+                Cena = (int)proizvod.Cena,
+                Opis = proizvod.Opis
             };
 
             return proizvodBo;
+        }
+
+        public string GetDeveloperByProizvodId(int id)
+        {
+            ProizvodBo proizvod = GetProizvodById(id);
+            return soloEntities.Users.Where(t => t.Id == proizvod.IdDev).Single().Username;
         }
     }
 }

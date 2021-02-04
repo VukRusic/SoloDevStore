@@ -30,5 +30,7 @@ namespace Solo.EntityFramework
         public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<Developer> Developers { get; set; }
         public DbSet<RegistrovanProizvod> RegistrovanProizvods { get; set; }
+        public DbSet<Korisnik> Korisniks { get; set; }
+        public DbSet<Recenzija> Recenzijas { get; set; }
     }
 }
