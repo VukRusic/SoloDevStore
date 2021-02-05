@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Detalji";
+    var idProzivoda = Model.Id;
 }
 
     <div>
@@ -54,8 +55,8 @@
                             </div>
                         </div>
                         <div class="input-group-append">
-                            <button class="btn btn-primary">Kupi</button>
-                                @Html.ActionLink("Oceni","Recenzija", new { id = ViewBag.Proizvod }, new { @class = "btn btn-primary" })
+                            <button class="btn btn-primary">@Html.ActionLink("Kupi", "Kupi", "Korisnik", new { idProzivoda = Model.Id }, null)</button>
+                            @Html.ActionLink("Oceni", "Recenzija", new { id = ViewBag.Proizvod }, new { @class = "btn btn-primary" })
                         </div>
                     </div>
                 </div>

@@ -21,12 +21,12 @@ namespace Solo.EntityFramework
     
         public int Id { get; set; }
         public int IdDevelopera { get; set; }
+        public string Naziv { get; set; }
         public string Zanr { get; set; }
         public int BrojIgraca { get; set; }
         public int PrepStarDoba { get; set; }
         public decimal Cena { get; set; }
-        public int Procenat { get; set; }
-        public string Naziv { get; set; }
+        public Nullable<int> Procenat { get; set; }
         public string Opis { get; set; }
     
         public virtual Developer Developer { get; set; }

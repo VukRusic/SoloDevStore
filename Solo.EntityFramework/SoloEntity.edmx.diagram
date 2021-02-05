@@ -5,20 +5,25 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="fc80bddc24ca41c18eeca86a522124f8" Name="Diagram1">
-        <EntityTypeShape EntityType="SoloModel.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SoloModel.Nalog" Width="1.5" PointX="3.375" PointY="0.75" />
         <EntityTypeShape EntityType="SoloModel.sysdiagram" Width="1.5" PointX="0.75" PointY="3.75" />
-        <AssociationConnector Association="SoloModel.FK_Nalog_User" />
-        <EntityTypeShape EntityType="SoloModel.Developer" Width="1.5" PointX="5.625" PointY="4.875" />
-        <EntityTypeShape EntityType="SoloModel.RegistrovanProizvod" Width="1.5" PointX="7.875" PointY="4.375" />
+        <EntityTypeShape EntityType="SoloModel.Developer" Width="1.5" PointX="8.25" PointY="3.625" />
+        <EntityTypeShape EntityType="SoloModel.Korisnik" Width="1.5" PointX="8.625" PointY="0.5" />
+        <EntityTypeShape EntityType="SoloModel.Nalog" Width="1.5" PointX="6" PointY="3.375" />
+        <EntityTypeShape EntityType="SoloModel.Racun" Width="1.5" PointX="4.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SoloModel.Radnik" Width="1.5" PointX="7.625" PointY="7.125" />
+        <EntityTypeShape EntityType="SoloModel.Recenzija" Width="1.5" PointX="12.75" PointY="2.125" />
+        <EntityTypeShape EntityType="SoloModel.RegistrovanProizvod" Width="1.5" PointX="10.5" PointY="3" />
+        <EntityTypeShape EntityType="SoloModel.User" Width="1.5" PointX="3.75" PointY="3.625" />
         <AssociationConnector Association="SoloModel.FK_Developer_Nalog" />
+        <AssociationConnector Association="SoloModel.FK_Developer_Racun" />
         <AssociationConnector Association="SoloModel.FK_RegistrovanProizvod_Developer" />
-        <EntityTypeShape EntityType="SoloModel.Korisnik" Width="1.5" PointX="5.625" PointY="1.125" />
         <AssociationConnector Association="SoloModel.FK_Korisnik_Nalog" />
-        <EntityTypeShape EntityType="SoloModel.Recenzija" Width="1.5" PointX="10.125" PointY="3" />
+        <AssociationConnector Association="SoloModel.FK_Korisnik_Racun" />
         <AssociationConnector Association="SoloModel.FK_Recenzija_Korisnik" />
+        <AssociationConnector Association="SoloModel.FK_Nalog_User" />
+        <AssociationConnector Association="SoloModel.FK_Radnik_Nalog" />
         <AssociationConnector Association="SoloModel.FK_Recenzija_RegistrovanProizvod" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

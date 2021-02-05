@@ -1,0 +1,72 @@
+﻿@model Solo.Domain.NalogBo
+@using Solo.Controllers
+
+@{
+    ViewBag.Title = "Kupi";
+}
+
+<h2>Informacija o Transakciji</h2><div><i class="fas fa-info-circle"></i></div>
+
+<div>
+    <h4>Vas Nalog:</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Ime)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Ime)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Prezime)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Prezime)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.JMBG)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.JMBG)
+                </dd>
+
+
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Racun)
+
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Racun)+<p style="font-weight:bold"> Din.</p>
+                    
+                </dd>
+
+            </dl>
+        </div>
+        <div class="col-md-6">
+            <div class="img-fluid"> <img src="~/Img/safexpressmoney_name_article_xyz.png" style="width:400px; height:312px ;border-radius:10px" /></div>
+        </div>
+
+
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <div><p class="lead">@Html.ViewBag.Poruka</p></div>
+    </div>
+</div>
+<p>
+
+    @Html.ActionLink("Nazad U Prodavnicu", "Index", "Korisnik", null, new { @class = "btn btn-success" })
+</p>

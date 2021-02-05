@@ -54,12 +54,19 @@
     <Compile Include="Korisnik.cs">
       <DependentUpon>SoloEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="KorisnikRepository.cs" />
     <Compile Include="LogRegRepository.cs" />
     <Compile Include="Nalog.cs">
       <DependentUpon>SoloEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="ProizvodRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Racun.cs">
+      <DependentUpon>SoloEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Radnik.cs">
+      <DependentUpon>SoloEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Recenzija.cs">
       <DependentUpon>SoloEntity.tt</DependentUpon>
     </Compile>
