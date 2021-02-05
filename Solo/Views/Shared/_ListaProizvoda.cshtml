@@ -4,7 +4,7 @@
 <table class="table" style="color:#e3e3e3">
     <tr>
         <th>
-            
+
         </th>
         <th>
             Naziv
@@ -24,32 +24,50 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    string source = item.Naziv + ".jpg";
-    <tr>
-        <td style="width:250px">
-            <img src="~/Img/@source" style="width:200px; height:112px" />
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Naziv)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Zanr)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BrojIgraca)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PrepStarDoba)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cena)
-        </td>
-        <td>
-            @Html.ActionLink("Detalji", "Detalji", "Korisnik", new { id = item.Id }, new { @class = "btn btn-secondary" })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        string source = item.Naziv + ".jpg";
+        <tr>
+            <td style="width:250px">
+                <img src="~/Img/@source" style="width:200px; height:112px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naziv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Zanr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrojIgraca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrepStarDoba)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cena)
+            </td>
+            <td>
+                @if (User.IsInRole("Korisnik"))
+                {
+                    <div>
+                        @Html.ActionLink("Detalji", "Detalji", "Korisnik", new { id = item.Id }, new { @class = "btn btn-primary" })
+                    </div>
+                }
+                else if (User.IsInRole("Developer"))
+                {
+                    <div>
+                        @Html.ActionLink("Izmeni", "Izmeni", "Developer", new { id = item.Id }, new { @class = "btn btn-primary" })
+                    </div>
+                }
+                else if (User.IsInRole("Radnik"))
+                {
+                    <div>
+                        @Html.ActionLink("Registruj Proizvod", "Registruj", new { id = item.Id}, new { @class = "btn btn-primary"})
+                    </div>
+                }
+            </td>
+        </tr>
+    }
 
 </table>
 <hr />

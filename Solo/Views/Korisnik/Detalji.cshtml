@@ -55,10 +55,7 @@
                         </div>
                         <div class="input-group-append">
                             <button class="btn btn-primary">Kupi</button>
-                            <button class="btn btn-primary" type="button">
-                                <i class="fas fa-heart"></i>
-                                @Html.ActionLink("Oceni","Recenzija")
-                            </button>
+                                @Html.ActionLink("Oceni","Recenzija", new { id = ViewBag.Proizvod }, new { @class = "btn btn-primary" })
                         </div>
                     </div>
                 </div>
@@ -96,10 +93,3 @@
         </p>
     </div>
 
-<script>
-    function Oceni() {
-        @{Url.Action("Recenzija"); } //Nece da pokrene action kako bi otvorio novi view za recenziju
-            console.log("radi");
-    }
-
-</script>

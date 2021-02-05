@@ -13,7 +13,17 @@ namespace Solo.EntityFramework
         SoloEntities soloEntities = new SoloEntities();
         public void AddRecenzija(RecenzijaBo recenzija)
         {
-            throw new NotImplementedException();
+            Recenzija recenzijaModel = new Recenzija()
+            {
+                Ocena = recenzija.Ocena,
+                Komentar = recenzija.Komentar,
+                IdProizvoda = recenzija.IdProizvoda,
+                IdKorisnika = GetKorisnikIdByUsername(recenzija.UsernameKorisnika),
+                Datum = DateTime.Now
+            };
+
+            soloEntities.Recenzijas.Add(recenzijaModel);
+            soloEntities.SaveChanges();
         }
 
         public IEnumerable<RecenzijaBo> GetRecenzijasByProizvodId(int id)
@@ -33,6 +43,11 @@ namespace Solo.EntityFramework
             return soloEntities.Users.Where(t => t.Id == id).Single().Username;
         }
 
+        private int GetKorisnikIdByUsername(string username)
+        {
+            return soloEntities.Users.Where(t => t.Username == username).Single().Id;
+        }
+
         private RecenzijaBo Map(Recenzija recenzija)
         {
             RecenzijaBo recenzijaBo = new RecenzijaBo()
@@ -46,6 +61,12 @@ namespace Solo.EntityFramework
             };
 
             return recenzijaBo;
+        }
+
+        public bool IsMade(RecenzijaBo recenzija)
+        {
+            int idKorisnika = GetKorisnikIdByUsername(recenzija.UsernameKorisnika);
+            return !soloEntities.Recenzijas.Any(t => t.IdKorisnika == idKorisnika && t.IdProizvoda == recenzija.IdProizvoda);
         }
     }
 }

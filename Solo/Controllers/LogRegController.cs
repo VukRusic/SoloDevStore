@@ -25,19 +25,39 @@ namespace Solo.Controllers
             if(logregRepo.isValid(user))
             {
                 UserBo userBo = logregRepo.GetUserByName(user.Username);
+
                 HttpCookie httpCookie = new HttpCookie("additionalCookie");
+                httpCookie.Values.Add("id", userBo.Id.ToString());
                 httpCookie.Values.Add("username", userBo.Username);
                 httpCookie.Values.Add("password", userBo.Password);
                 httpCookie.Values.Add("role", userBo.Role);
                 Response.Cookies.Add(httpCookie);
                 FormsAuthentication.SetAuthCookie(userBo.Username, false);
-                return RedirectToAction("Index", "Korisnik");
+
+                if (userBo.Role == "Korisnik")
+                {
+                    return RedirectToAction("Index", "Korisnik");
+                }
+                else if(userBo.Role == "Developer")
+                {
+                    return RedirectToAction("Index", "Developer");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Radnik");
+                }
             }
             else
             {
                 ModelState.AddModelError("", "Pogresan username ili password");
                 return View();
             }
+        }
+
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
         }
 
         public ActionResult Registration()

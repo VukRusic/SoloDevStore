@@ -10,5 +10,6 @@ namespace Solo.Domain.Repository
     {
         IEnumerable<RecenzijaBo> GetRecenzijasByProizvodId(int id);
         void AddRecenzija(RecenzijaBo recenzija);
+        bool IsMade(RecenzijaBo recenzija);
     }
 }

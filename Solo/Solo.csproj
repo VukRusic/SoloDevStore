@@ -126,8 +126,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DeveloperController.cs" />
     <Compile Include="Controllers\KorisnikController.cs" />
     <Compile Include="Controllers\LogRegController.cs" />
+    <Compile Include="Controllers\RadnikController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -141,6 +143,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Img\BULLY.jpg" />
     <Content Include="Img\cyber.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -148,6 +151,7 @@
     <Content Include="Img\GTA.jpg" />
     <Content Include="Img\gtaV.jpg" />
     <Content Include="Img\Mon.jpg" />
+    <Content Include="Img\RDR.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -288,6 +292,11 @@
     <Content Include="Views\Korisnik\Detalji.cshtml" />
     <Content Include="Views\Shared\_ListaRecenzija.cshtml" />
     <Content Include="Views\Korisnik\Recenzija.cshtml" />
+    <Content Include="Views\Developer\Index.cshtml" />
+    <Content Include="Views\Developer\Kreiranje.cshtml" />
+    <Content Include="Views\Developer\Izmeni.cshtml" />
+    <Content Include="Views\Radnik\Index.cshtml" />
+    <Content Include="Views\Radnik\Registruj.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

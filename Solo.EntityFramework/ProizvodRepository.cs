@@ -15,7 +15,7 @@ namespace Solo.EntityFramework
         {
             List<ProizvodBo> proizvods = new List<ProizvodBo>();
 
-            foreach (RegistrovanProizvod proizvod in soloEntities.RegistrovanProizvods)
+            foreach (RegistrovanProizvod proizvod in soloEntities.RegistrovanProizvods.Where(t=>t.Procenat>0))
             {
                 proizvods.Add(Map(proizvod));
             }
@@ -32,7 +32,7 @@ namespace Solo.EntityFramework
         public IEnumerable<ProizvodBo> GetProizvodByZanr(string zanr)
         {
             List<ProizvodBo> proizvods = new List<ProizvodBo>();
-            IEnumerable<RegistrovanProizvod> proizvodi = soloEntities.RegistrovanProizvods.Where(t => t.Zanr == zanr).ToList();
+            IEnumerable<RegistrovanProizvod> proizvodi = soloEntities.RegistrovanProizvods.Where(t => t.Zanr == zanr && t.Procenat>0).ToList();
             foreach (RegistrovanProizvod proizvod in proizvodi)
             {
                 proizvods.Add(Map(proizvod));
@@ -43,7 +43,7 @@ namespace Solo.EntityFramework
         public IEnumerable<ProizvodBo> GetProzivodByIme(string ime)
         {
             List<ProizvodBo> proizvods = new List<ProizvodBo>();
-            IEnumerable<RegistrovanProizvod> proizvodi = soloEntities.RegistrovanProizvods.Where(p => p.Naziv.Contains(ime));
+            IEnumerable<RegistrovanProizvod> proizvodi = soloEntities.RegistrovanProizvods.Where(p => p.Naziv.Contains(ime) && p.Procenat>0).ToList();
             foreach (RegistrovanProizvod proizvod in proizvodi)
             {
                 proizvods.Add(Map(proizvod));
@@ -73,6 +73,78 @@ namespace Solo.EntityFramework
         {
             ProizvodBo proizvod = GetProizvodById(id);
             return soloEntities.Users.Where(t => t.Id == proizvod.IdDev).Single().Username;
+        }
+
+        public IEnumerable<ProizvodBo> GetRegisteredProizvodsByDeveloperId(int id)
+        {
+            List<ProizvodBo> proizvods = new List<ProizvodBo>();
+            IEnumerable<RegistrovanProizvod> proizvodi = soloEntities.RegistrovanProizvods.Where(p => p.IdDevelopera == id && p.Procenat > 0).ToList();
+            foreach (RegistrovanProizvod proizvod in proizvodi)
+            {
+                proizvods.Add(Map(proizvod));
+            }
+            return proizvods;
+        }
+
+        public void AddProizvod(ProizvodBo proizvod)
+        {
+            RegistrovanProizvod registrovanProizvod = new RegistrovanProizvod()
+            {
+                IdDevelopera = proizvod.IdDev,
+                Naziv = proizvod.Naziv,
+                Zanr = proizvod.Zanr,
+                BrojIgraca = proizvod.BrojIgraca,
+                PrepStarDoba = proizvod.PrepStarDoba,
+                Cena = proizvod.Cena,
+                Opis = proizvod.Opis,
+                Procenat = 0
+            };
+
+            soloEntities.RegistrovanProizvods.Add(registrovanProizvod);
+            soloEntities.SaveChanges();
+        }
+
+        public IEnumerable<ProizvodBo> GetNonegisteredProizvods(int id)
+        {
+            List<ProizvodBo> proizvods = new List<ProizvodBo>();
+            IEnumerable<RegistrovanProizvod> proizvodi = soloEntities.RegistrovanProizvods.Where(p => p.IdDevelopera == id && p.Procenat == 0).ToList();
+            foreach (RegistrovanProizvod proizvod in proizvodi)
+            {
+                proizvods.Add(Map(proizvod));
+            }
+            return proizvods;
+        }
+
+        public void Update(ProizvodBo proizvodBo)
+        {
+            RegistrovanProizvod proizvod = soloEntities.RegistrovanProizvods.Single(t => t.Id == proizvodBo.Id);
+
+            proizvod.Naziv = proizvodBo.Naziv;
+            proizvod.Opis = proizvodBo.Opis;
+            proizvod.PrepStarDoba = proizvodBo.PrepStarDoba;
+            proizvod.Zanr = proizvodBo.Zanr;
+            proizvod.BrojIgraca = proizvodBo.BrojIgraca;
+
+            soloEntities.SaveChanges();
+
+        }
+
+        public IEnumerable<ProizvodBo> GetAllNonregisteredProizvods()
+        {
+            List<ProizvodBo> proizvods = new List<ProizvodBo>();
+            IEnumerable<RegistrovanProizvod> proizvodi = soloEntities.RegistrovanProizvods.Where(p=> p.Procenat == 0).ToList();
+            foreach (RegistrovanProizvod proizvod in proizvodi)
+            {
+                proizvods.Add(Map(proizvod));
+            }
+            return proizvods;
+        }
+
+        public void RegisterProizvod(ProizvodBo proizvodBo)
+        {
+            RegistrovanProizvod proizvod = soloEntities.RegistrovanProizvods.Single(t => t.Id == proizvodBo.Id);
+            proizvod.Procenat = proizvodBo.Procenat;
+            soloEntities.SaveChanges();
         }
     }
 }

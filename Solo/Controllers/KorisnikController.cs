@@ -79,9 +79,26 @@ namespace Solo.Controllers
             return PartialView("_ListaRecenzija", _recenzijaRepository.GetRecenzijasByProizvodId(id));
         }
 
-        public ActionResult Recenzija()
+        public ActionResult Recenzija(int id)
         {
+            ViewBag.Proizvod = id;
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Recenzija(RecenzijaBo recenzija)
+        {
+            ViewBag.Proizvod = recenzija.IdProizvoda;
+            if (_recenzijaRepository.IsMade(recenzija))
+            {
+                _recenzijaRepository.AddRecenzija(recenzija);
+                return RedirectToAction("Detalji", new { id = ViewBag.Proizvod });
+            }
+            else
+            {
+                ModelState.AddModelError("", "Vec ste uneli recenziju za ovaj proizvod");
+                return View();
+            }
         }
     }
 }
