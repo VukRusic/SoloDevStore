@@ -25,12 +25,14 @@ namespace Solo.EntityFramework
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<User> Users { get; set; }
-        public DbSet<Nalog> Nalogs { get; set; }
         public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<Developer> Developers { get; set; }
-        public DbSet<RegistrovanProizvod> RegistrovanProizvods { get; set; }
         public DbSet<Korisnik> Korisniks { get; set; }
+        public DbSet<Nalog> Nalogs { get; set; }
+        public DbSet<Racun> Racuns { get; set; }
+        public DbSet<Radnik> Radniks { get; set; }
         public DbSet<Recenzija> Recenzijas { get; set; }
+        public DbSet<RegistrovanProizvod> RegistrovanProizvods { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

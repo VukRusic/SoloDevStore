@@ -20,9 +20,10 @@ namespace Solo.EntityFramework
         }
     
         public int Id { get; set; }
-        public string Racun { get; set; }
+        public string RacunID { get; set; }
     
         public virtual Nalog Nalog { get; set; }
+        public virtual Racun Racun { get; set; }
         public virtual ICollection<Recenzija> Recenzijas { get; set; }
     }
 }

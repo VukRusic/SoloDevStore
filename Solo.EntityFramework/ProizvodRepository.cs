@@ -11,6 +11,8 @@ namespace Solo.EntityFramework
     public class ProizvodRepository : IProizvod
     {
         SoloEntities soloEntities = new SoloEntities();
+        LogRegRepository _LogRegRepository = new LogRegRepository();
+        KorisnikRepository _korisnikRepository = new KorisnikRepository();
         public IEnumerable<ProizvodBo> GetAll()
         {
             List<ProizvodBo> proizvods = new List<ProizvodBo>();
@@ -146,5 +148,27 @@ namespace Solo.EntityFramework
             proizvod.Procenat = proizvodBo.Procenat;
             soloEntities.SaveChanges();
         }
+
+
+        public string BuyProduct(string idkupca, int idproizvoda)
+        {
+            ProizvodBo ZeljeniProzivod = GetProizvodById(idproizvoda);
+
+            NalogBo TrenutniNalog = _LogRegRepository.GetNalogByName(idkupca);
+            int StanjeKorisnika = Int32.Parse(TrenutniNalog.Racun);
+            if (StanjeKorisnika > ZeljeniProzivod.Cena)
+            {
+                _korisnikRepository.SmanjiRacun(ZeljeniProzivod.Cena, TrenutniNalog.Id);
+                return "Uspeh";
+            }
+            else
+            {
+                return "Neuspeh";
+            }
+
+        }
+
+
+
     }
 }

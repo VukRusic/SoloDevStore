@@ -15,7 +15,8 @@ namespace Solo.Controllers
     {
         private readonly IProizvod _proizvodRepository = new ProizvodRepository();
         private readonly IRecenzija _recenzijaRepository = new RecenzijaRepository();
-        
+        LogRegRepository _logRegRepository = new LogRegRepository();
+
 
         //[Authorize(Roles = "Korisnik")]
         public ActionResult Index()
@@ -100,5 +101,41 @@ namespace Solo.Controllers
                 return View();
             }
         }
+
+        public ActionResult Kupi(int idProzivoda)
+        {
+
+            string TrenutnogKorisnika = User.Identity.Name;
+            
+            string odobrenje = _proizvodRepository.BuyProduct(TrenutnogKorisnika, idProzivoda);
+            NalogBo TrenutniNalog = _logRegRepository.GetNalogByName(TrenutnogKorisnika);
+            if (odobrenje == "Uspeh")
+            {
+                var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                var stringChars = new char[15];
+                var random = new Random();
+
+                for (int i = 0; i < stringChars.Length; i++)
+                {
+                    stringChars[i] = chars[random.Next(chars.Length)];
+                }
+                
+                var finalString = new String(stringChars);
+                ViewBag.Poruka = "http://" + finalString;
+                return View(TrenutniNalog);
+            }
+            else
+            {
+                ViewBag.Poruka = "Nemate dovoljno novca na racunu!";
+                return View(TrenutniNalog);
+            }
+
+        }
+
+
+
+
+
+
     }
 }

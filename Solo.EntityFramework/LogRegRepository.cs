@@ -33,14 +33,17 @@ namespace Solo.EntityFramework
             {
                 Korisnik korisnikModel = new Korisnik();
                 korisnikModel.Id = nalog.Id;
-                korisnikModel.Racun = "1234";
+                korisnikModel.RacunID = "1234"; // ovde bi posle nove registracije trebalo da bude RacunID
+                //ovde bi o
+                //korisnikModel.Racun.Stanje=8500 npr
                 soloEntities.Korisniks.Add(korisnikModel);
             }
             else if(nalog.Vrsta == "Developer")
             {
                 Developer developerModel = new Developer();
                 developerModel.Id = nalog.Id;
-                developerModel.Racun = "4321";
+                developerModel.RacunID = "4321"; // ovde bi posle nove registracije trebalo da bude RacunID
+               //korisnikModel.Racun.Stanje=8500 npr
                 soloEntities.Developers.Add(developerModel);
             }
             soloEntities.SaveChanges();
@@ -73,5 +76,27 @@ namespace Solo.EntityFramework
         {
             return soloEntities.Users.Any(t => t.Username == userBo.Username && t.Password == userBo.Password);
         }
+
+
+        public NalogBo GetNalogByName(string id)
+        {
+
+            User user = soloEntities.Users.Where(t => t.Username == id).Single();
+            Nalog nalog = soloEntities.Nalogs.Where(t => t.Id == user.Id).Single();
+            Korisnik korisnik = soloEntities.Korisniks.Where(t => t.Id == nalog.Id).Single();
+
+
+            return new NalogBo
+            {
+                Ime = nalog.Ime,
+                Id = nalog.Id,
+                Prezime = nalog.Prezime,
+                JMBG = nalog.JMBG,
+                Racun = korisnik.Racun.Stanje
+
+            };
+        }
+
+
     }
 }

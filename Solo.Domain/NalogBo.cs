@@ -23,5 +23,9 @@ namespace Solo.Domain
         [Required]
         public string Vrsta { get; set; }
         public string Racun { get; set; }
+
+        public string RacunID { get; set; }
+
+
     }
 }

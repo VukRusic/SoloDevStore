@@ -20,5 +20,7 @@ namespace Solo.Domain.Repository
         void Update(ProizvodBo proizvodBo);
         void RegisterProizvod(ProizvodBo proizvodBo);
 
+        string BuyProduct(string idkupca, int idproizvoda);
+
     }
 }

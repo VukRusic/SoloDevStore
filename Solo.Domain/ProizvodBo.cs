@@ -15,7 +15,7 @@ namespace Solo.Domain
         public int BrojIgraca { get; set; }
         public int PrepStarDoba { get; set; }
         public int Cena { get; set; }
-        public int Procenat { get; set; }
+        public int? Procenat { get; set; }
         public string Opis { get; set; }
     }
 }
