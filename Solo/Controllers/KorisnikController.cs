@@ -31,11 +31,6 @@ namespace Solo.Controllers
             return View(user);
         }
 
-        public ActionResult LogOut()
-        {
-            FormsAuthentication.SignOut();
-            return RedirectToAction("Login","LogReg");
-        }
 
         public ActionResult GetAllProizvods()
         {

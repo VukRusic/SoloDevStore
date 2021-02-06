@@ -28,12 +28,6 @@ namespace Solo.Controllers
             return View();
         }
 
-        public ActionResult LogOut()
-        {
-            FormsAuthentication.SignOut();
-            return RedirectToAction("Login", "LogReg");
-        }
-
         public ActionResult GetRegisteredProizvodsByDeveloper(int id)
         {
             return PartialView("_ListaProizvoda", _proizvodRepository.GetRegisteredProizvodsByDeveloperId(id));
@@ -67,6 +61,12 @@ namespace Solo.Controllers
         public ActionResult Izmeni(ProizvodBo proizvod)
         {
             _proizvodRepository.Update(proizvod);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Obrisi(int id)
+        {
+            _proizvodRepository.DeleteProizvod(id);
             return RedirectToAction("Index");
         }
     }

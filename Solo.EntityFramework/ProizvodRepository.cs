@@ -183,5 +183,20 @@ namespace Solo.EntityFramework
         {
             return !soloEntities.EvidencijaProdajes.Where(t => t.IdKorisnika == idkorisnika && t.IdProizvoda == idproizvoda).Any();
         }
+
+        public void DeleteProizvod(int id)
+        {
+            RegistrovanProizvod proizvod = soloEntities.RegistrovanProizvods.Single(t => t.Id == id);
+            foreach (EvidencijaProdaje prodaje in soloEntities.EvidencijaProdajes.Where(t=> t.IdProizvoda == id))
+            {
+                soloEntities.EvidencijaProdajes.Remove(prodaje);
+            }
+            foreach (Recenzija recenzija in soloEntities.Recenzijas.Where(t=>t.IdProizvoda == id))
+            {
+                soloEntities.Recenzijas.Remove(recenzija);
+            }
+            soloEntities.RegistrovanProizvods.Remove(proizvod);
+            soloEntities.SaveChanges();
+        }
     }
 }
