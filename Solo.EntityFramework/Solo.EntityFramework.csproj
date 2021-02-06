@@ -84,10 +84,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SoloEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="SoloEntity.Designer.cs">
+    <Compile Include="SoloEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SoloEntity.edmx</DependentUpon>
+      <DependentUpon>SoloEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="sysdiagram.cs">
       <DependentUpon>SoloEntity.tt</DependentUpon>
@@ -99,12 +99,12 @@
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="SoloEntity.edmx">
+    <EntityDeploy Include="SoloEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SoloEntity.Designer.cs</LastGenOutput>
+      <LastGenOutput>SoloEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="SoloEntity.edmx.diagram">
-      <DependentUpon>SoloEntity.edmx</DependentUpon>
+    <None Include="SoloEntities.edmx.diagram">
+      <DependentUpon>SoloEntities.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -119,12 +119,12 @@
   <ItemGroup>
     <Content Include="SoloEntity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SoloEntity.edmx</DependentUpon>
+      <DependentUpon>SoloEntities.edmx</DependentUpon>
       <LastGenOutput>SoloEntity.Context.cs</LastGenOutput>
     </Content>
     <Content Include="SoloEntity.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SoloEntity.edmx</DependentUpon>
+      <DependentUpon>SoloEntities.edmx</DependentUpon>
       <LastGenOutput>SoloEntity.cs</LastGenOutput>
     </Content>
   </ItemGroup>
