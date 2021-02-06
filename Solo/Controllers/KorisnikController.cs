@@ -14,9 +14,8 @@ namespace Solo.Controllers
     public class KorisnikController : Controller
     {
         private readonly IProizvodRepository _proizvodRepository = new ProizvodRepository();
-        private readonly IRecenzija _recenzijaRepository = new RecenzijaRepository();
-        LogRegRepository _logRegRepository = new LogRegRepository();
-
+        private readonly IRecenzijaRepository _recenzijaRepository = new RecenzijaRepository();
+        private readonly ILogRegRepository _logRegRepository = new LogRegRepository();
 
         //[Authorize(Roles = "Korisnik")]
         public ActionResult Index()
@@ -105,11 +104,13 @@ namespace Solo.Controllers
         public ActionResult Kupi(int idProzivoda)
         {
             string username = User.Identity.Name;
-            NalogBo TrenutniNalog = _logRegRepository.GetNalogByName(username);
+            int id = _logRegRepository.GetIdByName(username);
 
-            if (_proizvodRepository.IsPurchased(TrenutniNalog.Id, idProzivoda))
+            if (_proizvodRepository.IsPurchased(id, idProzivoda))
             {
                 string odobrenje = _proizvodRepository.BuyProduct(username, idProzivoda);
+                NalogBo TrenutniNalog = _logRegRepository.GetNalogByName(username);
+
 
                 if (odobrenje == "Uspeh")
                 {
@@ -135,6 +136,7 @@ namespace Solo.Controllers
             else
             {
                 ViewBag.Poruka = "Vec ste kupili ovaj proizvod";
+                NalogBo TrenutniNalog = _logRegRepository.GetNalogByName(username);
                 return View(TrenutniNalog);
             }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Solo.Domain.Repository
 {
-    public interface IRecenzija
+    public interface IRecenzijaRepository
     {
         IEnumerable<RecenzijaBo> GetRecenzijasByProizvodId(int id);
         void AddRecenzija(RecenzijaBo recenzija);

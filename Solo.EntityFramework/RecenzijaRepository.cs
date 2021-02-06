@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Solo.EntityFramework
 {
-    public class RecenzijaRepository : IRecenzija
+    public class RecenzijaRepository : IRecenzijaRepository
     {
         SoloEntities soloEntities = new SoloEntities();
         public void AddRecenzija(RecenzijaBo recenzija)

@@ -14,6 +14,7 @@ namespace Solo.Domain.Repository
         void AddUser(NalogBo nalog);
         bool isFree(NalogBo nalog);
         NalogBo GetNalogByName(string username);
+        int GetIdByName(string username);
 
     }
 }

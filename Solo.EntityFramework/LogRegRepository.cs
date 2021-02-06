@@ -77,7 +77,6 @@ namespace Solo.EntityFramework
 
         public NalogBo GetNalogByName(string username)
         {
-
             User user = soloEntities.Users.Where(t => t.Username == username).Single();
 
             return new NalogBo
@@ -89,6 +88,12 @@ namespace Solo.EntityFramework
                 Racun = user.Nalog.Korisnik.Racun.Stanje
 
             };
+        }
+
+        public int GetIdByName(string username)
+        {
+            Nalog nalog = soloEntities.Nalogs.Where(t => t.User.Username == username).Single();
+            return nalog.Id;
         }
 
 
