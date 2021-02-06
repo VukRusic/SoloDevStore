@@ -13,7 +13,7 @@ namespace Solo.Controllers
     [Authorize]
     public class RadnikController : Controller
     {
-        private readonly IProizvod _proizvodRepository = new ProizvodRepository();
+        private readonly IProizvodRepository _proizvodRepository = new ProizvodRepository();
         public ActionResult Index()
         {
             HttpCookie httpCookie = Request.Cookies["additionalCookie"];

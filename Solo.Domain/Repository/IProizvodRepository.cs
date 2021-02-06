@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Solo.Domain.Repository
 {
-    public interface IProizvod
+    public interface IProizvodRepository
     {
         IEnumerable<ProizvodBo> GetAll();
         IEnumerable<ProizvodBo> GetAllNonregisteredProizvods();
@@ -19,8 +19,8 @@ namespace Solo.Domain.Repository
         IEnumerable<ProizvodBo> GetNonegisteredProizvods(int id);
         void Update(ProizvodBo proizvodBo);
         void RegisterProizvod(ProizvodBo proizvodBo);
-
-        string BuyProduct(string idkupca, int idproizvoda);
+        string BuyProduct(string username, int idproizvoda);
+        bool IsPurchased(int idkorisnika, int idproizvoda);
 
     }
 }

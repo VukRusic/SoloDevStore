@@ -33,17 +33,14 @@ namespace Solo.EntityFramework
             {
                 Korisnik korisnikModel = new Korisnik();
                 korisnikModel.Id = nalog.Id;
-                korisnikModel.RacunID = "1234"; // ovde bi posle nove registracije trebalo da bude RacunID
-                //ovde bi o
-                //korisnikModel.Racun.Stanje=8500 npr
+                korisnikModel.RacunID = "1234";
                 soloEntities.Korisniks.Add(korisnikModel);
             }
             else if(nalog.Vrsta == "Developer")
             {
                 Developer developerModel = new Developer();
                 developerModel.Id = nalog.Id;
-                developerModel.RacunID = "4321"; // ovde bi posle nove registracije trebalo da bude RacunID
-               //korisnikModel.Racun.Stanje=8500 npr
+                developerModel.RacunID = "4321";
                 soloEntities.Developers.Add(developerModel);
             }
             soloEntities.SaveChanges();
@@ -78,21 +75,18 @@ namespace Solo.EntityFramework
         }
 
 
-        public NalogBo GetNalogByName(string id)
+        public NalogBo GetNalogByName(string username)
         {
 
-            User user = soloEntities.Users.Where(t => t.Username == id).Single();
-            Nalog nalog = soloEntities.Nalogs.Where(t => t.Id == user.Id).Single();
-            Korisnik korisnik = soloEntities.Korisniks.Where(t => t.Id == nalog.Id).Single();
-
+            User user = soloEntities.Users.Where(t => t.Username == username).Single();
 
             return new NalogBo
             {
-                Ime = nalog.Ime,
-                Id = nalog.Id,
-                Prezime = nalog.Prezime,
-                JMBG = nalog.JMBG,
-                Racun = korisnik.Racun.Stanje
+                Ime = user.Nalog.Ime,
+                Id = user.Id,
+                Prezime = user.Nalog.Prezime,
+                JMBG = user.Nalog.JMBG,
+                Racun = user.Nalog.Korisnik.Racun.Stanje
 
             };
         }

@@ -5,7 +5,7 @@
     ViewBag.Title = "Kupi";
 }
 
-<h2>Informacija o Transakciji</h2><div><i class="fas fa-info-circle"></i></div>
+<h2><i class="fas fa-info-circle"></i>  Informacije o transakciji</h2>
 
 <div>
     <h4>Vas Nalog:</h4>
@@ -42,12 +42,12 @@
 
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.Racun)
+                    Trenutno stanje racuna:
 
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.Racun)+<p style="font-weight:bold"> Din.</p>
+                    @Html.DisplayFor(model => model.Racun).00 Din
                     
                 </dd>
 

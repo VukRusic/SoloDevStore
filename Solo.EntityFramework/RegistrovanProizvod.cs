@@ -16,6 +16,7 @@ namespace Solo.EntityFramework
     {
         public RegistrovanProizvod()
         {
+            this.EvidencijaProdajes = new HashSet<EvidencijaProdaje>();
             this.Recenzijas = new HashSet<Recenzija>();
         }
     
@@ -30,6 +31,7 @@ namespace Solo.EntityFramework
         public string Opis { get; set; }
     
         public virtual Developer Developer { get; set; }
+        public virtual ICollection<EvidencijaProdaje> EvidencijaProdajes { get; set; }
         public virtual ICollection<Recenzija> Recenzijas { get; set; }
     }
 }

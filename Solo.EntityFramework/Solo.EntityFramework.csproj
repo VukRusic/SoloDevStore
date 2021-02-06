@@ -49,40 +49,43 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Developer.cs">
-      <DependentUpon>SoloEntity.tt</DependentUpon>
+      <DependentUpon>SoloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EvidencijaProdaje.cs">
+      <DependentUpon>SoloEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Korisnik.cs">
-      <DependentUpon>SoloEntity.tt</DependentUpon>
+      <DependentUpon>SoloEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="KorisnikRepository.cs" />
     <Compile Include="LogRegRepository.cs" />
     <Compile Include="Nalog.cs">
-      <DependentUpon>SoloEntity.tt</DependentUpon>
+      <DependentUpon>SoloEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ProizvodRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Racun.cs">
-      <DependentUpon>SoloEntity.tt</DependentUpon>
+      <DependentUpon>SoloEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Radnik.cs">
-      <DependentUpon>SoloEntity.tt</DependentUpon>
+      <DependentUpon>SoloEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Recenzija.cs">
-      <DependentUpon>SoloEntity.tt</DependentUpon>
+      <DependentUpon>SoloEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="RecenzijaRepository.cs" />
     <Compile Include="RegistrovanProizvod.cs">
-      <DependentUpon>SoloEntity.tt</DependentUpon>
+      <DependentUpon>SoloEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="SoloEntity.Context.cs">
+    <Compile Include="SoloEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SoloEntity.Context.tt</DependentUpon>
+      <DependentUpon>SoloEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="SoloEntity.cs">
+    <Compile Include="SoloEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SoloEntity.tt</DependentUpon>
+      <DependentUpon>SoloEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="SoloEntities.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -90,10 +93,10 @@
       <DependentUpon>SoloEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="sysdiagram.cs">
-      <DependentUpon>SoloEntity.tt</DependentUpon>
+      <DependentUpon>SoloEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>SoloEntity.tt</DependentUpon>
+      <DependentUpon>SoloEntities.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -117,15 +120,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SoloEntity.Context.tt">
+    <Content Include="SoloEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SoloEntities.edmx</DependentUpon>
-      <LastGenOutput>SoloEntity.Context.cs</LastGenOutput>
+      <LastGenOutput>SoloEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="SoloEntity.tt">
+    <Content Include="SoloEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SoloEntities.edmx</DependentUpon>
-      <LastGenOutput>SoloEntity.cs</LastGenOutput>
+      <LastGenOutput>SoloEntities.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

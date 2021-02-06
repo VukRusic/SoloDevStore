@@ -11,14 +11,16 @@ namespace Solo.EntityFramework
     {
 
         SoloEntities soloEntities = new SoloEntities();
-        public void SmanjiRacun(int Cena, int korisnikID)
+        public void SmanjiRacun(int cena, int korisnikID)
         {
             Korisnik korisnik = soloEntities.Korisniks.Where(k => k.Id == korisnikID).Single();
+
             if (korisnik == null) return;
             else
             {
-                int NoviRacun = Int32.Parse(korisnik.Racun.Stanje) - Cena;
-                korisnik.Racun.Stanje = NoviRacun.ToString();
+                int noviRacun = Int32.Parse(korisnik.Racun.Stanje) - cena;
+                korisnik.Racun.Stanje = noviRacun.ToString();
+                
                 soloEntities.SaveChanges();
             }
 

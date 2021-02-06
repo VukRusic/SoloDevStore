@@ -12,20 +12,13 @@ namespace Solo.EntityFramework
     using System;
     using System.Collections.Generic;
     
-    public partial class Korisnik
+    public partial class EvidencijaProdaje
     {
-        public Korisnik()
-        {
-            this.EvidencijaProdajes = new HashSet<EvidencijaProdaje>();
-            this.Recenzijas = new HashSet<Recenzija>();
-        }
-    
         public int Id { get; set; }
-        public string RacunID { get; set; }
+        public int IdKorisnika { get; set; }
+        public int IdProizvoda { get; set; }
     
-        public virtual ICollection<EvidencijaProdaje> EvidencijaProdajes { get; set; }
-        public virtual Nalog Nalog { get; set; }
-        public virtual Racun Racun { get; set; }
-        public virtual ICollection<Recenzija> Recenzijas { get; set; }
+        public virtual Korisnik Korisnik { get; set; }
+        public virtual RegistrovanProizvod RegistrovanProizvod { get; set; }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Solo.EntityFramework
 {
-    public class ProizvodRepository : IProizvod
+    public class ProizvodRepository : IProizvodRepository
     {
         SoloEntities soloEntities = new SoloEntities();
         LogRegRepository _LogRegRepository = new LogRegRepository();
@@ -150,15 +150,26 @@ namespace Solo.EntityFramework
         }
 
 
-        public string BuyProduct(string idkupca, int idproizvoda)
+        public string BuyProduct(string username, int idproizvoda)
         {
             ProizvodBo ZeljeniProzivod = GetProizvodById(idproizvoda);
 
-            NalogBo TrenutniNalog = _LogRegRepository.GetNalogByName(idkupca);
+            NalogBo TrenutniNalog = _LogRegRepository.GetNalogByName(username);
+
             int StanjeKorisnika = Int32.Parse(TrenutniNalog.Racun);
-            if (StanjeKorisnika > ZeljeniProzivod.Cena)
+            if (StanjeKorisnika >= ZeljeniProzivod.Cena)
             {
                 _korisnikRepository.SmanjiRacun(ZeljeniProzivod.Cena, TrenutniNalog.Id);
+
+                EvidencijaProdaje evidencijaProdaje = new EvidencijaProdaje()
+                {
+                    IdKorisnika = TrenutniNalog.Id,
+                    IdProizvoda = idproizvoda
+                };
+
+                soloEntities.EvidencijaProdajes.Add(evidencijaProdaje);
+                soloEntities.SaveChanges();
+
                 return "Uspeh";
             }
             else
@@ -168,7 +179,9 @@ namespace Solo.EntityFramework
 
         }
 
-
-
+        public bool IsPurchased(int idkorisnika, int idproizvoda)
+        {
+            return !soloEntities.EvidencijaProdajes.Where(t => t.IdKorisnika == idkorisnika && t.IdProizvoda == idproizvoda).Any();
+        }
     }
 }

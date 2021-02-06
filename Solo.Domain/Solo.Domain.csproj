@@ -48,7 +48,7 @@
     <Compile Include="RecenzijaBo.cs" />
     <Compile Include="Repository\IKorisnikRepository.cs" />
     <Compile Include="Repository\ILogRegRepository.cs" />
-    <Compile Include="Repository\IProizvod.cs" />
+    <Compile Include="Repository\IProizvodRepository.cs" />
     <Compile Include="Repository\IRecenzija.cs" />
     <Compile Include="UserBo.cs" />
   </ItemGroup>
