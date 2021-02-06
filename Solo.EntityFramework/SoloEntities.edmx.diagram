@@ -25,6 +25,7 @@
         <AssociationConnector Association="SoloModel.FK_Nalog_User" />
         <AssociationConnector Association="SoloModel.FK_Radnik_Nalog" />
         <AssociationConnector Association="SoloModel.FK_Recenzija_RegistrovanProizvod" />
+        <EntityTypeShape EntityType="SoloModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
