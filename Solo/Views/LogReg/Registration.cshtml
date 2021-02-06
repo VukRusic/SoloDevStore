@@ -44,7 +44,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type="password" } })
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
                                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -71,6 +71,13 @@
                             @Html.ValidationMessageFor(model => model.JMBG, "", new { @class = "text-danger" })
                         </div>
                     </div><br />
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.RacunID, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.RacunID, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.RacunID, "", new { @class = "text-danger" })
+                        </div>
+                    </div><br />
                     <div class="form-check">
                         <label>Izaberite vrstu naloga: </label><br />
                         @Html.RadioButtonFor(model => model.Vrsta, "Korisnik")
@@ -82,7 +89,7 @@
                             Developer
                         </label>
                     </div>
-                    
+
                     <button type="submit" class="btn btn-primary mt-5 dugme">Registruj se</button>
                 </div>       
                     }

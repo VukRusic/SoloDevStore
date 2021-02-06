@@ -29,18 +29,24 @@ namespace Solo.EntityFramework
 
             soloEntities.Nalogs.Add(nalogModel);
 
+            Racun racunModel = new Racun();
+            racunModel.Id = nalog.RacunID;
+            racunModel.Stanje = "8500";
+
+            soloEntities.Racuns.Add(racunModel);
+
             if(nalog.Vrsta == "Korisnik")
             {
                 Korisnik korisnikModel = new Korisnik();
                 korisnikModel.Id = nalog.Id;
-                korisnikModel.RacunID = "1234";
+                korisnikModel.RacunID = nalog.RacunID;
                 soloEntities.Korisniks.Add(korisnikModel);
             }
             else if(nalog.Vrsta == "Developer")
             {
                 Developer developerModel = new Developer();
                 developerModel.Id = nalog.Id;
-                developerModel.RacunID = "4321";
+                developerModel.RacunID = nalog.RacunID;
                 soloEntities.Developers.Add(developerModel);
             }
             soloEntities.SaveChanges();
