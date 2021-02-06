@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Lenovo T470p\Desktop\Solo\MVC\Solo\Solo.EntityFramework\SoloEntities.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\programi c#\SOLO\Solo.EntityFramework\SoloEntities.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
