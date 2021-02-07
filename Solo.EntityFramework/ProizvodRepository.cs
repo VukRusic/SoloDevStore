@@ -184,6 +184,21 @@ namespace Solo.EntityFramework
             return !soloEntities.EvidencijaProdajes.Where(t => t.IdKorisnika == idkorisnika && t.IdProizvoda == idproizvoda).Any();
         }
 
+        public int GetDugovanjaByDeveloperId(int developerid)
+        {
+
+            int Dugovanja = 0;
+            List<EvidencijaProdaje> prodaja = soloEntities.EvidencijaProdajes.Where(e => e.RegistrovanProizvod.IdDevelopera == developerid).ToList();
+            foreach (EvidencijaProdaje predmet in prodaja)
+            {
+                Dugovanja += (int)predmet.RegistrovanProizvod.Cena;
+            }
+
+            return Dugovanja;
+
+
+
+
         public void DeleteProizvod(int id)
         {
             RegistrovanProizvod proizvod = soloEntities.RegistrovanProizvods.Single(t => t.Id == id);
@@ -197,6 +212,7 @@ namespace Solo.EntityFramework
             }
             soloEntities.RegistrovanProizvods.Remove(proizvod);
             soloEntities.SaveChanges();
+
         }
     }
 }

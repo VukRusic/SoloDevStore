@@ -23,5 +23,7 @@ namespace Solo.Domain.Repository
         bool IsPurchased(int idkorisnika, int idproizvoda);
         void DeleteProizvod(int id);
 
+        int GetDugovanjaByDeveloperId(int developerid);
+
     }
 }
