@@ -92,6 +92,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SoloEntities.edmx</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>SoloEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>SoloEntities.tt</DependentUpon>
     </Compile>

@@ -196,7 +196,7 @@ namespace Solo.EntityFramework
 
             return Dugovanja;
 
-
+        }
 
 
         public void DeleteProizvod(int id)
