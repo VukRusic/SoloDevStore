@@ -61,6 +61,11 @@ namespace Solo.Controllers
             }
         }
 
+        public ActionResult GetAvgOcenaByProizvodId(int id)
+        {
+            return Content(_recenzijaRepository.GetAvgRecenzijaByProizvodId(id));
+        }
+
         public ActionResult Detalji(int id)
         {
             ProizvodBo proizvod = _proizvodRepository.GetProizvodById(id);

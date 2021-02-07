@@ -68,5 +68,13 @@ namespace Solo.EntityFramework
             int idKorisnika = GetKorisnikIdByUsername(recenzija.UsernameKorisnika);
             return !soloEntities.Recenzijas.Any(t => t.IdKorisnika == idKorisnika && t.IdProizvoda == recenzija.IdProizvoda);
         }
+
+        public string GetAvgRecenzijaByProizvodId(int id)
+        {
+            double ocena = soloEntities.Recenzijas.Where(t => t.IdProizvoda == id).Average(t => t.Ocena);
+            ocena = Math.Round(ocena, 1);
+            return ocena.ToString();
+
+        }
     }
 }
