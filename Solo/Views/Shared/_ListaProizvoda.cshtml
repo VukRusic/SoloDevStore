@@ -13,11 +13,17 @@
             @Html.DisplayNameFor(model => model.Zanr)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BrojIgraca)
+            Broj igraca
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PrepStarDoba)
+            Preporuceno starosno doba
         </th>
+        @if (User.IsInRole("Korisnik"))
+        {
+        <th>
+            Prosecna ocena
+        </th>
+        }
         <th>
             @Html.DisplayNameFor(model => model.Cena)
         </th>
@@ -43,6 +49,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PrepStarDoba)
             </td>
+            @if (User.IsInRole("Korisnik"))
+            {
+                <td>
+                    @Html.Action("GetAvgOcenaByProizvodId", "Korisnik", new { id=item.Id })
+                </td>
+            }
             <td>
                 @Html.DisplayFor(modelItem => item.Cena)
             </td>

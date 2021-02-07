@@ -31,11 +31,6 @@ namespace Solo.Controllers
             return View(user);
         }
 
-        public ActionResult LogOut()
-        {
-            FormsAuthentication.SignOut();
-            return RedirectToAction("Login","LogReg");
-        }
 
         public ActionResult GetAllProizvods()
         {
@@ -64,6 +59,11 @@ namespace Solo.Controllers
             {
                 return PartialView("_ListaProizvoda", _proizvodRepository.GetProzivodByIme(ime));
             }
+        }
+
+        public ActionResult GetAvgOcenaByProizvodId(int id)
+        {
+            return Content(_recenzijaRepository.GetAvgRecenzijaByProizvodId(id));
         }
 
         public ActionResult Detalji(int id)

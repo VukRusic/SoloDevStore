@@ -21,6 +21,7 @@ namespace Solo.Domain.Repository
         void RegisterProizvod(ProizvodBo proizvodBo);
         string BuyProduct(string username, int idproizvoda);
         bool IsPurchased(int idkorisnika, int idproizvoda);
+        void DeleteProizvod(int id);
 
         int GetDugovanjaByDeveloperId(int developerid);
 
