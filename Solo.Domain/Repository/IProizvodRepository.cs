@@ -22,5 +22,7 @@ namespace Solo.Domain.Repository
         string BuyProduct(string username, int idproizvoda);
         bool IsPurchased(int idkorisnika, int idproizvoda);
 
+        int GetDugovanjaByDeveloperId(int developerid);
+
     }
 }

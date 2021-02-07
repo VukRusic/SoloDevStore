@@ -4,9 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8ed98ecfada24ed1a46123e7da1e2f56" Name="Diagram1" ZoomLevel="59">
+      <Diagram DiagramId="8ed98ecfada24ed1a46123e7da1e2f56" Name="Diagram1" ZoomLevel="88">
         <EntityTypeShape EntityType="SoloModel.Developer" Width="1.5" PointX="5.25" PointY="2.5" />
-        <EntityTypeShape EntityType="SoloModel.EvidencijaProdaje" Width="1.5" PointX="9.75" PointY="6.75" />
+        <EntityTypeShape EntityType="SoloModel.EvidencijaProdaje" Width="1.5" PointX="10.875" PointY="6.625" />
         <EntityTypeShape EntityType="SoloModel.Korisnik" Width="1.5" PointX="5.25" PointY="5.5" />
         <EntityTypeShape EntityType="SoloModel.Nalog" Width="1.5" PointX="3" PointY="5.25" />
         <EntityTypeShape EntityType="SoloModel.Racun" Width="1.5" PointX="3" PointY="2.625" />
