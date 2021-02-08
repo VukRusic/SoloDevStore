@@ -33,7 +33,7 @@ namespace Solo.Controllers
                 httpCookie.Values.Add("role", userBo.Role);
                 Response.Cookies.Add(httpCookie);
                 FormsAuthentication.SetAuthCookie(userBo.Username, false);
-
+                
                 if (userBo.Role == "Korisnik")
                 {
                     return RedirectToAction("Index", "Korisnik");

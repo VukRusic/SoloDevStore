@@ -148,18 +148,23 @@ namespace Solo.Controllers
 
         public ActionResult PregledNaloga(string userN)
         {
-            string username = User.Identity.Name;
             NalogBo nalog = _logRegRepository.GetNalogByName(userN);
             return View(nalog);
         }
 
         [HttpPost]
         public ActionResult PregledNaloga(NalogBo nalog)
-        {
-           
-           
+        {  
             _logRegRepository.Update(nalog);
-            
+
+            HttpCookie httpCookie = new HttpCookie("additionalCookie");
+            httpCookie.Values.Add("id", nalog.Id.ToString());
+            httpCookie.Values.Add("username", nalog.Username);
+            httpCookie.Values.Add("password", nalog.Password);
+            httpCookie.Values.Add("role", nalog.Vrsta);
+            Response.Cookies.Add(httpCookie);
+            FormsAuthentication.SetAuthCookie(nalog.Username, false);
+
             return RedirectToAction("Index");
         }
 

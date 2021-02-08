@@ -107,12 +107,10 @@ namespace Solo.EntityFramework
 
         public void Update(NalogBo nalog)
         {
-            User juser = soloEntities.Users.Where(u => u.Id == nalog.Id).Single();
-            
+            User user = soloEntities.Users.Where(u => u.Id == nalog.Id).Single();
 
-
-            juser.Username = nalog.Username;
-            juser.Password = nalog.Password;
+            user.Username = nalog.Username;
+            user.Password = nalog.Password;
             
             soloEntities.SaveChanges();
         }

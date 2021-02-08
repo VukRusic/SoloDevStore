@@ -17,15 +17,14 @@
                     <a class="nav-link" href="#">Help</a>
                 </li>
             </ul>
-            @if (User.Identity.IsAuthenticated)
+            @if (User.Identity.IsAuthenticated) 
             {
                 <ul class="navbar-right navbar-nav ">
                     <li class="nav-item active">
                         <i class="far fa-user mt-2"></i>
                     </li> 
                     <li class="nav-item active">
-                        
-                        @Html.ActionLink(Model.Username.ToString(),"PregledNaloga","Korisnik", new {userN=Model.Username }, new { @class = "nav-link" }) 
+                        @Html.ActionLink(Model.Username,"PregledNaloga","Korisnik", new {userN = Model.Username }, new { @class = "nav-link" }) 
                     </li>
                     <li class="nav-item active">
                         @Html.ActionLink("Sign out", "LogOut", "LogReg", null, new { @class = "nav-link" })
