@@ -195,6 +195,10 @@ namespace Solo.EntityFramework
             {
                 soloEntities.Recenzijas.Remove(recenzija);
             }
+            foreach (EvidencijaProdaje prodaja in soloEntities.EvidencijaProdajes.Where(t => t.IdProizvoda == id))
+            {
+                soloEntities.EvidencijaProdajes.Remove(prodaja);
+            }
             soloEntities.RegistrovanProizvods.Remove(proizvod);
             soloEntities.SaveChanges();
 

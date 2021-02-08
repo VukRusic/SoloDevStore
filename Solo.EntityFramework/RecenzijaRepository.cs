@@ -71,9 +71,14 @@ namespace Solo.EntityFramework
 
         public string GetAvgRecenzijaByProizvodId(int id)
         {
-            double ocena = soloEntities.Recenzijas.Where(t => t.IdProizvoda == id).Average(t => t.Ocena);
-            ocena = Math.Round(ocena, 1);
-            return ocena.ToString();
+            if (soloEntities.Recenzijas.Any(t => t.IdProizvoda == id))
+            {
+                double ocena = soloEntities.Recenzijas.Where(t => t.IdProizvoda == id).Average(t => t.Ocena);
+                ocena = Math.Round(ocena, 1);
+                return ocena.ToString();
+            }
+            else
+                return "/";
 
         }
     }
