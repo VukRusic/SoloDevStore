@@ -9,8 +9,31 @@ label, h3, footer, a {
 }
 
 .btn-primary {
-    background-color: #990099;
+    background-color: #800080;
     border-color: #800080;
+}
+
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #b800b8;
+        border-color: #b800b8;
+    }
+
+.btn.focus, .btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem #360036;
+}
+
+.btn-primary:focus {
+    color: #fff;
+    background-color: #590059;
+    border-color: #590059;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #590059;
+    border-color: #590059;
 }
 
 .navbar {
@@ -36,8 +59,3 @@ hr {
 .navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
     color: #e7e7e7;
 }
-
-
-
-
-

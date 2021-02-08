@@ -144,10 +144,15 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Img\BULLY.jpg" />
+    <Content Include="Img\BUY.jpg" />
     <Content Include="Img\cyber.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Img\DEV.jpg" />
+    <Content Include="Img\GAME.jpg" />
+    <Content Include="Img\GAME2.jpg" />
+    <Content Include="Img\GAME3.jpg" />
     <Content Include="Img\GTA.jpg" />
     <Content Include="Img\gtaV.jpg" />
     <Content Include="Img\Mon.jpg" />
@@ -298,6 +303,7 @@
     <Content Include="Views\Radnik\Index.cshtml" />
     <Content Include="Views\Radnik\Registruj.cshtml" />
     <Content Include="Views\Korisnik\Kupi.cshtml" />
+    <Content Include="Views\LogReg\Help.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
