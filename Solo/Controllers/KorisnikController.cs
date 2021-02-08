@@ -146,5 +146,23 @@ namespace Solo.Controllers
         }
 
 
+        public ActionResult PregledNaloga(string userN)
+        {
+            string username = User.Identity.Name;
+            NalogBo nalog = _logRegRepository.GetNalogByName(userN);
+            return View(nalog);
+        }
+
+        [HttpPost]
+        public ActionResult PregledNaloga(NalogBo nalog)
+        {
+           
+           
+            _logRegRepository.Update(nalog);
+            
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

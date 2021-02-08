@@ -64,7 +64,7 @@ namespace Solo.EntityFramework
                 Naziv = proizvod.Naziv,
                 PrepStarDoba = proizvod.PrepStarDoba,
                 Procenat = proizvod.Procenat,
-                Cena = (int)proizvod.Cena,
+                Cena = (int)proizvod.Cena+(int)(proizvod.Cena*proizvod.Procenat/100),
                 Opis = proizvod.Opis
             };
 
