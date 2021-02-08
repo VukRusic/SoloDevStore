@@ -16,5 +16,7 @@ namespace Solo.Domain.Repository
         NalogBo GetNalogByName(string username);
         int GetIdByName(string username);
 
+        void Update(NalogBo nalog);
+
     }
 }

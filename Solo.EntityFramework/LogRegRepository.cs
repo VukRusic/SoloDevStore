@@ -91,7 +91,10 @@ namespace Solo.EntityFramework
                 Id = user.Id,
                 Prezime = user.Nalog.Prezime,
                 JMBG = user.Nalog.JMBG,
-                Stanje = user.Nalog.Korisnik.Racun.Stanje
+                Stanje = user.Nalog.Korisnik.Racun.Stanje,
+                Username=user.Username,
+                Password=user.Password
+                
 
             };
         }
@@ -102,6 +105,16 @@ namespace Solo.EntityFramework
             return nalog.Id;
         }
 
+        public void Update(NalogBo nalog)
+        {
+            User juser = soloEntities.Users.Where(u => u.Id == nalog.Id).Single();
+            
 
+
+            juser.Username = nalog.Username;
+            juser.Password = nalog.Password;
+            
+            soloEntities.SaveChanges();
+        }
     }
 }

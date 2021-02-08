@@ -298,6 +298,7 @@
     <Content Include="Views\Radnik\Index.cshtml" />
     <Content Include="Views\Radnik\Registruj.cshtml" />
     <Content Include="Views\Korisnik\Kupi.cshtml" />
+    <Content Include="Views\Korisnik\PregledNaloga.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
