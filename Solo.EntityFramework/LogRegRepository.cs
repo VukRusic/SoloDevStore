@@ -91,7 +91,7 @@ namespace Solo.EntityFramework
                 Id = user.Id,
                 Prezime = user.Nalog.Prezime,
                 JMBG = user.Nalog.JMBG,
-                Racun = user.Nalog.Korisnik.Racun.Stanje
+                Stanje = user.Nalog.Korisnik.Racun.Stanje
 
             };
         }

@@ -22,7 +22,7 @@ namespace Solo.Domain
         public string Password { get; set; }
         [Required]
         public string Vrsta { get; set; }
-        public string Racun { get; set; }
+        public string Stanje { get; set; }
 
         public string RacunID { get; set; }
 

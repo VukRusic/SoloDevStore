@@ -17,6 +17,7 @@ namespace Solo.EntityFramework
         public int Id { get; set; }
         public int IdKorisnika { get; set; }
         public int IdProizvoda { get; set; }
+        public string Status { get; set; }
     
         public virtual Korisnik Korisnik { get; set; }
         public virtual RegistrovanProizvod RegistrovanProizvod { get; set; }

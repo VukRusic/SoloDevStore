@@ -70,6 +70,7 @@
     <Compile Include="Radnik.cs">
       <DependentUpon>SoloEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="RadnikRepository.cs" />
     <Compile Include="Recenzija.cs">
       <DependentUpon>SoloEntities.tt</DependentUpon>
     </Compile>

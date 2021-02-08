@@ -156,7 +156,7 @@ namespace Solo.EntityFramework
 
             NalogBo TrenutniNalog = _LogRegRepository.GetNalogByName(username);
 
-            int StanjeKorisnika = Int32.Parse(TrenutniNalog.Racun);
+            int StanjeKorisnika = Int32.Parse(TrenutniNalog.Stanje);
             if (StanjeKorisnika >= ZeljeniProzivod.Cena)
             {
                 _korisnikRepository.SmanjiRacun(ZeljeniProzivod.Cena, TrenutniNalog.Id);
@@ -183,21 +183,6 @@ namespace Solo.EntityFramework
         {
             return !soloEntities.EvidencijaProdajes.Where(t => t.IdKorisnika == idkorisnika && t.IdProizvoda == idproizvoda).Any();
         }
-
-        public int GetDugovanjaByDeveloperId(int developerid)
-        {
-
-            int Dugovanja = 0;
-            List<EvidencijaProdaje> prodaja = soloEntities.EvidencijaProdajes.Where(e => e.RegistrovanProizvod.IdDevelopera == developerid).ToList();
-            foreach (EvidencijaProdaje predmet in prodaja)
-            {
-                Dugovanja += (int)predmet.RegistrovanProizvod.Cena;
-            }
-
-            return Dugovanja;
-
-        }
-
 
         public void DeleteProizvod(int id)
         {

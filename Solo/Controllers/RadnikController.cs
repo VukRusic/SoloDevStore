@@ -14,6 +14,7 @@ namespace Solo.Controllers
     public class RadnikController : Controller
     {
         private readonly IProizvodRepository _proizvodRepository = new ProizvodRepository();
+        private readonly IRadnikRepository _radnikRepository = new RadnikRepository();
         public ActionResult Index()
         {
             HttpCookie httpCookie = Request.Cookies["additionalCookie"];
@@ -24,13 +25,24 @@ namespace Solo.Controllers
                 Password = httpCookie.Values["password"],
                 Role = httpCookie.Values["role"]
             };
-
+            ViewBag.Developers = _radnikRepository.GetAllDevelopers();
             return View();
+        }
+
+        public ActionResult GetDugovanjaByDeveloper(string username)
+        {
+            return Content(_radnikRepository.GetDugovanjaByDeveloper(username).ToString());
         }
 
         public ActionResult GetAllNonRegisteredProizvods()
         {
             return PartialView("_ListaProizvoda", _proizvodRepository.GetAllNonregisteredProizvods());
+        }
+
+        public ActionResult PayDeveloper(string username)
+        {
+            _radnikRepository.PayDeveloper(username);
+            return RedirectToAction("Index");
         }
 
         
