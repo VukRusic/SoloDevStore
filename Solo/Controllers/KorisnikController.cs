@@ -124,18 +124,21 @@ namespace Solo.Controllers
                     }
 
                     var finalString = new String(stringChars);
+                    ViewBag.Result = true;
                     ViewBag.Poruka = "http://" + finalString;
                     return View(TrenutniNalog);
                 }
                 else
                 {
-                    ViewBag.Poruka = "Nemate dovoljno novca na racunu!";
+                    ViewBag.Result = false;
+                    ViewBag.Poruka = "Nemate dovoljno novca na racunu";
                     return View(TrenutniNalog);
                 }
             }
             else
             {
-                ViewBag.Poruka = "Vec ste kupili ovaj proizvod";
+                ViewBag.Result = false;
+                ViewBag.Poruka = "Vec ste kupili izabrani proizvod";
                 NalogBo TrenutniNalog = _logRegRepository.GetNalogByName(username);
                 return View(TrenutniNalog);
             }

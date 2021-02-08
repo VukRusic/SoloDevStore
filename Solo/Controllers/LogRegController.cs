@@ -80,13 +80,11 @@ namespace Solo.Controllers
             }
         }
 
+        public ActionResult Help()
+        {
+            return View();
+        }
 
-
-
-
-        
-
-
-
+       
     }
 }
