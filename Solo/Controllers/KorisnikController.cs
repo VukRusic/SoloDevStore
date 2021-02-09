@@ -13,11 +13,22 @@ namespace Solo.Controllers
     [Authorize]
     public class KorisnikController : Controller
     {
-        private readonly IProizvodRepository _proizvodRepository = new ProizvodRepository();
-        private readonly IRecenzijaRepository _recenzijaRepository = new RecenzijaRepository();
-        private readonly ILogRegRepository _logRegRepository = new LogRegRepository();
+        #region Fileds
+        private readonly IProizvodRepository _proizvodRepository;
+        private readonly IRecenzijaRepository _recenzijaRepository;
+        private readonly ILogRegRepository _logRegRepository; 
+        #endregion
 
-        
+        #region Constructors
+        public KorisnikController()
+        {
+            _proizvodRepository = new ProizvodRepository();
+            _recenzijaRepository = new RecenzijaRepository();
+            _logRegRepository = new LogRegRepository();
+        }
+        #endregion
+
+        #region Methods
         public ActionResult Index()
         {
             HttpCookie httpCookie = Request.Cookies["additionalCookie"];
@@ -153,7 +164,7 @@ namespace Solo.Controllers
 
         [HttpPost]
         public ActionResult PregledNaloga(NalogBo nalog)
-        {  
+        {
             _logRegRepository.Update(nalog);
 
             HttpCookie httpCookie = new HttpCookie("additionalCookie");
@@ -165,8 +176,8 @@ namespace Solo.Controllers
             FormsAuthentication.SetAuthCookie(nalog.Username, false);
 
             return RedirectToAction("Index");
-        }
-
+        } 
+        #endregion
 
     }
 }

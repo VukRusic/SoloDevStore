@@ -13,9 +13,20 @@ namespace Solo.Controllers
     [Authorize]
     public class RadnikController : Controller
     {
-        private readonly IProizvodRepository _proizvodRepository = new ProizvodRepository();
-        private readonly IRadnikRepository _radnikRepository = new RadnikRepository();
+        #region Fields
+        private readonly IProizvodRepository _proizvodRepository;
+        private readonly IRadnikRepository _radnikRepository; 
+        #endregion
 
+        #region Contructors
+        public RadnikController()
+        {
+            _proizvodRepository = new ProizvodRepository();
+            _radnikRepository = new RadnikRepository();
+        }
+        #endregion
+
+        #region Methods
         public ActionResult Index()
         {
             HttpCookie httpCookie = Request.Cookies["additionalCookie"];
@@ -46,7 +57,7 @@ namespace Solo.Controllers
             return RedirectToAction("Index");
         }
 
-        
+
         public ActionResult Registruj(int id)
         {
             ProizvodBo proizvod = _proizvodRepository.GetProizvodById(id);
@@ -59,7 +70,8 @@ namespace Solo.Controllers
         {
             _proizvodRepository.RegisterProizvod(proizvod);
             return RedirectToAction("Index");
-        }
+        } 
+        #endregion
 
     }
 }

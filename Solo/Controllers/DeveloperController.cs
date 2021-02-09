@@ -13,8 +13,20 @@ namespace Solo.Controllers
     [Authorize]
     public class DeveloperController : Controller
     {
-        private readonly IProizvodRepository _proizvodRepository = new ProizvodRepository();
-        private readonly ILogRegRepository _logRegRepository = new LogRegRepository();
+        #region Fields
+        private readonly IProizvodRepository _proizvodRepository;
+        private readonly ILogRegRepository _logRegRepository; 
+        #endregion
+
+        #region Contructors
+        public DeveloperController()
+        {
+            _proizvodRepository = new ProizvodRepository();
+            _logRegRepository = new LogRegRepository();
+        } 
+        #endregion
+
+        #region Methods
         public ActionResult Index()
         {
             HttpCookie httpCookie = Request.Cookies["additionalCookie"];
@@ -101,4 +113,6 @@ namespace Solo.Controllers
             return RedirectToAction("Index");
         }
     }
+    #endregion
+
 }
