@@ -12,18 +12,12 @@ namespace Solo.EntityFramework
     using System;
     using System.Collections.Generic;
     
-    public partial class Developer
+    public partial class sysdiagram
     {
-        public Developer()
-        {
-            this.RegistrovanProizvods = new HashSet<RegistrovanProizvod>();
-        }
-    
-        public int Id { get; set; }
-        public string RacunID { get; set; }
-    
-        public virtual Nalog Nalog { get; set; }
-        public virtual ICollection<RegistrovanProizvod> RegistrovanProizvods { get; set; }
-        public virtual Racun Racun { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

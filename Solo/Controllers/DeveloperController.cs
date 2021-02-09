@@ -14,6 +14,7 @@ namespace Solo.Controllers
     public class DeveloperController : Controller
     {
         private readonly IProizvodRepository _proizvodRepository = new ProizvodRepository();
+        private readonly ILogRegRepository _logRegRepository = new LogRegRepository();
         public ActionResult Index()
         {
             HttpCookie httpCookie = Request.Cookies["additionalCookie"];
@@ -25,7 +26,7 @@ namespace Solo.Controllers
                 Role = httpCookie.Values["role"]
             };
             ViewBag.Id = user.Id;
-            return View();
+            return View(user);
         }
 
         public ActionResult GetRegisteredProizvodsByDeveloper(int id)
@@ -75,6 +76,28 @@ namespace Solo.Controllers
         public ActionResult Obrisi(int id)
         {
             _proizvodRepository.DeleteProizvod(id);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult PregledNaloga(string userN)
+        {
+            NalogBo nalog = _logRegRepository.GetNalogByName(userN);
+            return View(nalog);
+        }
+
+        [HttpPost]
+        public ActionResult PregledNaloga(NalogBo nalog)
+        {
+            _logRegRepository.Update(nalog);
+
+            HttpCookie httpCookie = new HttpCookie("additionalCookie");
+            httpCookie.Values.Add("id", nalog.Id.ToString());
+            httpCookie.Values.Add("username", nalog.Username);
+            httpCookie.Values.Add("password", nalog.Password);
+            httpCookie.Values.Add("role", nalog.Vrsta);
+            Response.Cookies.Add(httpCookie);
+            FormsAuthentication.SetAuthCookie(nalog.Username, false);
+
             return RedirectToAction("Index");
         }
     }

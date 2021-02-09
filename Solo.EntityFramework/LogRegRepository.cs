@@ -85,18 +85,32 @@ namespace Solo.EntityFramework
         {
             User user = soloEntities.Users.Where(t => t.Username == username).Single();
 
-            return new NalogBo
+            if (user.Vrsta == "Korisnik")
             {
-                Ime = user.Nalog.Ime,
-                Id = user.Id,
-                Prezime = user.Nalog.Prezime,
-                JMBG = user.Nalog.JMBG,
-                Stanje = user.Nalog.Korisnik.Racun.Stanje,
-                Username=user.Username,
-                Password=user.Password
-                
-
-            };
+                return new NalogBo
+                {
+                    Ime = user.Nalog.Ime,
+                    Id = user.Id,
+                    Prezime = user.Nalog.Prezime,
+                    JMBG = user.Nalog.JMBG,
+                    Stanje = user.Nalog.Korisnik.Racun.Stanje,
+                    Username = user.Username,
+                    Password = user.Password
+                };
+            }
+            else
+            {
+                return new NalogBo
+                {
+                    Ime = user.Nalog.Ime,
+                    Id = user.Id,
+                    Prezime = user.Nalog.Prezime,
+                    JMBG = user.Nalog.JMBG,
+                    Stanje = user.Nalog.Developer.Racun.Stanje,
+                    Username = user.Username,
+                    Password = user.Password
+                };
+            }
         }
 
         public int GetIdByName(string username)

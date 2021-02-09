@@ -16,14 +16,14 @@ namespace Solo.EntityFramework
     {
         public Racun()
         {
-            this.Developers = new HashSet<Developer>();
             this.Korisniks = new HashSet<Korisnik>();
+            this.Developers = new HashSet<Developer>();
         }
     
         public string Id { get; set; }
         public string Stanje { get; set; }
     
-        public virtual ICollection<Developer> Developers { get; set; }
         public virtual ICollection<Korisnik> Korisniks { get; set; }
+        public virtual ICollection<Developer> Developers { get; set; }
     }
 }

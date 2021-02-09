@@ -15,7 +15,6 @@
         <EntityTypeShape EntityType="SoloModel.RegistrovanProizvod" Width="1.5" PointX="7.5" PointY="5" />
         <EntityTypeShape EntityType="SoloModel.User" Width="1.5" PointX="0.75" PointY="5.625" />
         <AssociationConnector Association="SoloModel.FK_Developer_Nalog" />
-        <AssociationConnector Association="SoloModel.FK_Developer_Racun" />
         <AssociationConnector Association="SoloModel.FK_RegistrovanProizvod_Developer" />
         <AssociationConnector Association="SoloModel.FK_EvidencijaProdaje_Korisnik" />
         <AssociationConnector Association="SoloModel.FK_EvidencijaProdaje_RegistrovanProizvod" />
@@ -25,6 +24,8 @@
         <AssociationConnector Association="SoloModel.FK_Nalog_User" />
         <AssociationConnector Association="SoloModel.FK_Radnik_Nalog" />
         <AssociationConnector Association="SoloModel.FK_Recenzija_RegistrovanProizvod" />
+        <EntityTypeShape EntityType="SoloModel.sysdiagram" Width="1.5" PointX="7.375" PointY="0.75" />
+        <AssociationConnector Association="SoloModel.FK_Developer_Racun" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
