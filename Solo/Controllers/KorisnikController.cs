@@ -17,7 +17,7 @@ namespace Solo.Controllers
         private readonly IRecenzijaRepository _recenzijaRepository = new RecenzijaRepository();
         private readonly ILogRegRepository _logRegRepository = new LogRegRepository();
 
-        //[Authorize(Roles = "Korisnik")]
+        
         public ActionResult Index()
         {
             HttpCookie httpCookie = Request.Cookies["additionalCookie"];
@@ -30,7 +30,6 @@ namespace Solo.Controllers
             ViewBag.Zanr = _proizvodRepository.GetAll().Select(t => t.Zanr).Distinct().ToList();
             return View(user);
         }
-
 
         public ActionResult GetAllProizvods()
         {

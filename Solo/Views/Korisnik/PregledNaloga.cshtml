@@ -1,92 +1,91 @@
 ﻿@model Solo.Domain.NalogBo
 
 @{
-    ViewBag.Title = "PregledNaloga";
+    ViewBag.Title = "Nalog";
 }
 
 <h2>Vas Nalog</h2>
 
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>NalogBo</h4>
-    <hr />
-    <dl class="dl-horizontal">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Ime)
-        </dt>
+    <div class="form-horizontal">
+        <hr />
+        <dl class="dl-horizontal col-md-6">
 
-        <dd>
-            @Html.DisplayFor(model => model.Ime)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Ime)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Prezime)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Ime)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Prezime)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Prezime)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.JMBG)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Prezime)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.JMBG)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.JMBG)
+            </dt>
 
+            <dd>
+                @Html.DisplayFor(model => model.JMBG)
+            </dd>
 
 
-        <dt>
-            Trenutno stanje racuna:
 
-        </dt>
+            <dt>
+                Trenutno stanje racuna:
 
-        <dd>
-            @Html.DisplayFor(model => model.Stanje).00 Din
+            </dt>
 
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Stanje).00 Din
 
-    </dl>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.Id)
+            </dd>
 
-    
+        </dl>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+
+        <div class="col-md-6" style="padding:0">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Sačuvaj" class="btn btn-danger" />
+                </div>
+            </div>
         </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-danger" />
-        </div>
-    </div>
-</div>
+    </div><br /><br />
 }
-
+<hr />
 <div>
-    @Html.ActionLink("Nazad", "Index")
+    <a href="@Url.Action("Index")" class="btn btn-primary"><i class="fas fa-arrow-circle-left"></i>  Nazad</a>
 </div>
 
 @section Scripts {

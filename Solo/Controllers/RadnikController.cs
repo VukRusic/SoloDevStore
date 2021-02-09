@@ -15,6 +15,7 @@ namespace Solo.Controllers
     {
         private readonly IProizvodRepository _proizvodRepository = new ProizvodRepository();
         private readonly IRadnikRepository _radnikRepository = new RadnikRepository();
+
         public ActionResult Index()
         {
             HttpCookie httpCookie = Request.Cookies["additionalCookie"];

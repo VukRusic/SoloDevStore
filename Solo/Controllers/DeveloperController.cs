@@ -41,8 +41,16 @@ namespace Solo.Controllers
         [HttpPost]
         public ActionResult AddProizvod(ProizvodBo proizvodBo)
         {
-            _proizvodRepository.AddProizvod(proizvodBo);
-            return RedirectToAction("Index");
+            if (_proizvodRepository.IsMade(proizvodBo.Naziv))
+            {
+                _proizvodRepository.AddProizvod(proizvodBo);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Vec je unet proizvod sa unetim nazivom");
+                return View("Kreiranje");
+            }
         }
 
         public ActionResult GetNonregisteredProizvods(int id)

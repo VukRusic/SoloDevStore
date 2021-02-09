@@ -88,8 +88,13 @@ namespace Solo.EntityFramework
             return proizvods;
         }
 
-        public void AddProizvod(ProizvodBo proizvod)
+        public bool IsMade(string naziv)
         {
+            return !soloEntities.RegistrovanProizvods.Any(t => t.Naziv == naziv);
+        }
+
+        public void AddProizvod(ProizvodBo proizvod)
+        { 
             RegistrovanProizvod registrovanProizvod = new RegistrovanProizvod()
             {
                 IdDevelopera = proizvod.IdDev,
@@ -97,7 +102,7 @@ namespace Solo.EntityFramework
                 Zanr = proizvod.Zanr,
                 BrojIgraca = proizvod.BrojIgraca,
                 PrepStarDoba = proizvod.PrepStarDoba,
-                Cena = proizvod.Cena,
+                Cena = (int)proizvod.Cena + (int)(proizvod.Cena * proizvod.Procenat / 100),
                 Opis = proizvod.Opis,
                 Procenat = 0
             };

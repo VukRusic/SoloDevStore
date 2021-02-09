@@ -22,5 +22,6 @@ namespace Solo.Domain.Repository
         string BuyProduct(string username, int idproizvoda);
         bool IsPurchased(int idkorisnika, int idproizvoda);
         void DeleteProizvod(int id);
+        bool IsMade(string naziv);
     }
 }
