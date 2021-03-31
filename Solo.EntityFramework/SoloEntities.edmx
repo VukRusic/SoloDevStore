@@ -67,7 +67,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdDevelopera" Type="int" Nullable="false" />
-          <Property Name="Naziv" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Zanr" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="BrojIgraca" Type="int" Nullable="false" />
           <Property Name="PrepStarDoba" Type="int" Nullable="false" />
@@ -410,7 +410,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdDevelopera" Type="Int32" Nullable="false" />
-          <Property Name="Naziv" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Naziv" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Zanr" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="BrojIgraca" Type="Int32" Nullable="false" />
           <Property Name="PrepStarDoba" Type="Int32" Nullable="false" />

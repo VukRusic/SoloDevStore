@@ -12,8 +12,18 @@ namespace Solo.Controllers
 {
     public class LogRegController : Controller
     {
-        private readonly ILogRegRepository logregRepo = new LogRegRepository();
+        #region Fields
+        private readonly ILogRegRepository logregRepo; 
+        #endregion
 
+        #region Constructors
+        public LogRegController()
+        {
+            logregRepo = new LogRegRepository();
+        }
+        #endregion
+
+        #region Methods
         public ActionResult Login()
         {
             return View();
@@ -22,7 +32,7 @@ namespace Solo.Controllers
         [HttpPost]
         public ActionResult Login(UserBo user)
         {
-            if(logregRepo.isValid(user))
+            if (logregRepo.isValid(user))
             {
                 UserBo userBo = logregRepo.GetUserByName(user.Username);
 
@@ -33,12 +43,12 @@ namespace Solo.Controllers
                 httpCookie.Values.Add("role", userBo.Role);
                 Response.Cookies.Add(httpCookie);
                 FormsAuthentication.SetAuthCookie(userBo.Username, false);
-                
+
                 if (userBo.Role == "Korisnik")
                 {
                     return RedirectToAction("Index", "Korisnik");
                 }
-                else if(userBo.Role == "Developer")
+                else if (userBo.Role == "Developer")
                 {
                     return RedirectToAction("Index", "Developer");
                 }
@@ -83,8 +93,8 @@ namespace Solo.Controllers
         public ActionResult Help()
         {
             return View();
-        }
+        } 
+        #endregion
 
-       
     }
 }
