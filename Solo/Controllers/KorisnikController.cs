@@ -109,6 +109,7 @@ namespace Solo.Controllers
             {
                 string odobrenje = _proizvodRepository.BuyProduct(username, idProzivoda);
                 NalogBo TrenutniNalog = _logRegRepository.GetNalogByName(username);
+                ProizvodBo proizvodKupljeni = _proizvodRepository.GetProizvodById(idProzivoda);
 
 
                 if (odobrenje == "Uspeh")
@@ -125,6 +126,8 @@ namespace Solo.Controllers
                     var finalString = new String(stringChars);
                     ViewBag.Result = true;
                     ViewBag.Poruka = "http://" + finalString;
+                    ViewBag.Developer = _proizvodRepository.GetDeveloperByProizvodId(idProzivoda);
+                    ViewBag.KupljeniProzivod = proizvodKupljeni.Id;
                     return View(TrenutniNalog);
                 }
                 else
@@ -165,6 +168,41 @@ namespace Solo.Controllers
             FormsAuthentication.SetAuthCookie(nalog.Username, false);
 
             return RedirectToAction("Index");
+        }
+
+
+        public ActionResult Uplatnica(int id,string username)
+        {
+            var chars = "0123456789";
+            var stringChars = new char[10];
+            var random = new Random();
+
+            for (int i = 0; i < stringChars.Length; i++)
+            {
+                stringChars[i] = chars[random.Next(chars.Length)];
+            }
+
+            var finalString = new String(stringChars);
+
+            var chars2 = "0123456789";
+            var stringChars2 = new char[2];
+            var random2 = new Random();
+
+            for (int i = 0; i < stringChars2.Length; i++)
+            {
+                stringChars2[i] = chars2[random2.Next(chars2.Length)];
+            }
+
+            var finalString2 = new String(stringChars2);
+            NalogBo nalog= _logRegRepository.GetNalogByName(username);
+            
+            ProizvodBo proizvod = _proizvodRepository.GetProizvodById(id);
+            ViewBag.Cena = proizvod.Cena;
+            ViewBag.Korisnik = nalog.Ime + " " + nalog.Prezime;
+            ViewBag.Developer = _proizvodRepository.GetDeveloperByProizvodId(id);
+            ViewBag.ModelBroj = finalString2;
+            ViewBag.PozivNaBroj = finalString;
+            return View();
         }
 
 

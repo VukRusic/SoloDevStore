@@ -1,0 +1,66 @@
+﻿@model Solo.Domain.NalogBo
+
+@{
+    ViewBag.Title = "Uplatnica";
+}
+
+<h2>Uplatnica</h2>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form>
+                <fieldset disabled>
+
+                    <div class="mb-3">
+                        <label for="disabledTextInput" class="form-label">Uplatilac</label>
+                        <input type="text" id="disabledTextInput" class="form-control" placeholder="@ViewBag.Korisnik">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="disabledTextInput" class="form-label">Svrha Uplate</label>
+                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Internet Kupovina">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="disabledTextInput" class="form-label">Primalac</label>
+                        <input type="text" id="disabledTextInput" class="form-control" placeholder="SOLO">
+                    </div>
+
+
+
+                </fieldset>
+            </form>
+        </div>
+        <div class="col">
+
+        </div>
+        <div class="col">
+            <form>
+                <fieldset disabled>
+                    
+                        <div class="mb-3">
+                        <label for="disabledTextInput" class="form-label">Suma</label>
+                        <input type="text" id="disabledTextInput" class="form-control" placeholder="@ViewBag.Cena">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="disabledTextInput" class="form-label">Ziro Racun</label>
+                        <input type="text" id="disabledTextInput" class="form-control" placeholder="224-887956-89">
+                    </div>
+                    <div class="mb-3">
+                        <label for="disabledTextInput" class="form-label">Model I Poziv na broj</label>
+                        <input type="text" id="disabledTextInput" class="form-control" placeholder="@ViewBag.ModelBroj">
+                        <input type="text" id="disabledTextInput" class="form-control mt-1" placeholder="@ViewBag.PozivNaBroj">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <p class="mt-5">
+        <hr />
+        <a href="@Url.Action("Index","Korisnik")" class="btn btn-primary"><i class="fas fa-arrow-circle-left"></i>  Nazad</a>
+    </p>
+</div>
+
+
+

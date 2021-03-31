@@ -306,6 +306,7 @@
     <Content Include="Views\Korisnik\PregledNaloga.cshtml" />
     <Content Include="Views\LogReg\Help.cshtml" />
     <Content Include="Views\Developer\PregledNaloga.cshtml" />
+    <Content Include="Views\Korisnik\Uplatnica.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -75,16 +75,6 @@
           <Property Name="Procenat" Type="int" />
           <Property Name="Opis" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
@@ -235,7 +225,6 @@
           <EntitySet Name="Radnik" EntityType="Self.Radnik" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Recenzija" EntityType="Self.Recenzija" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegistrovanProizvod" EntityType="Self.RegistrovanProizvod" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Developer_Nalog" Association="Self.FK_Developer_Nalog">
             <End Role="Nalog" EntitySet="Nalog" />
@@ -300,6 +289,10 @@
             <End Role="Nalog" EntitySet="Nalogs" />
             <End Role="Developer" EntitySet="Developers" />
           </AssociationSet>
+          <AssociationSet Name="FK_Developer_Racun" Association="SoloModel.FK_Developer_Racun">
+            <End Role="Racun" EntitySet="Racuns" />
+            <End Role="Developer" EntitySet="Developers" />
+          </AssociationSet>
           <AssociationSet Name="FK_RegistrovanProizvod_Developer" Association="SoloModel.FK_RegistrovanProizvod_Developer">
             <End Role="Developer" EntitySet="Developers" />
             <End Role="RegistrovanProizvod" EntitySet="RegistrovanProizvods" />
@@ -336,11 +329,6 @@
             <End Role="RegistrovanProizvod" EntitySet="RegistrovanProizvods" />
             <End Role="Recenzija" EntitySet="Recenzijas" />
           </AssociationSet>
-          <EntitySet Name="sysdiagrams" EntityType="SoloModel.sysdiagram" />
-          <AssociationSet Name="FK_Developer_Racun" Association="SoloModel.FK_Developer_Racun">
-            <End Role="Racun" EntitySet="Racuns" />
-            <End Role="Developer" EntitySet="Developers" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Developer">
           <Key>
@@ -349,8 +337,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="RacunID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Nalog" Relationship="SoloModel.FK_Developer_Nalog" FromRole="Developer" ToRole="Nalog" />
-          <NavigationProperty Name="RegistrovanProizvods" Relationship="SoloModel.FK_RegistrovanProizvod_Developer" FromRole="Developer" ToRole="RegistrovanProizvod" />
           <NavigationProperty Name="Racun" Relationship="SoloModel.FK_Developer_Racun" FromRole="Developer" ToRole="Racun" />
+          <NavigationProperty Name="RegistrovanProizvods" Relationship="SoloModel.FK_RegistrovanProizvod_Developer" FromRole="Developer" ToRole="RegistrovanProizvod" />
         </EntityType>
         <EntityType Name="EvidencijaProdaje">
           <Key>
@@ -393,8 +381,8 @@
           </Key>
           <Property Name="Id" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="Stanje" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Korisniks" Relationship="SoloModel.FK_Korisnik_Racun" FromRole="Racun" ToRole="Korisnik" />
           <NavigationProperty Name="Developers" Relationship="SoloModel.FK_Developer_Racun" FromRole="Racun" ToRole="Developer" />
+          <NavigationProperty Name="Korisniks" Relationship="SoloModel.FK_Korisnik_Racun" FromRole="Racun" ToRole="Korisnik" />
         </EntityType>
         <EntityType Name="Radnik">
           <Key>
@@ -452,6 +440,18 @@
             </Principal>
             <Dependent Role="Developer">
               <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Developer_Racun">
+          <End Type="SoloModel.Racun" Role="Racun" Multiplicity="0..1" />
+          <End Type="SoloModel.Developer" Role="Developer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Racun">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Developer">
+              <PropertyRef Name="RacunID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -563,29 +563,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <Association Name="FK_Developer_Racun">
-          <End Type="SoloModel.Racun" Role="Racun" Multiplicity="0..1" />
-          <End Type="SoloModel.Developer" Role="Developer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Racun">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Developer">
-              <PropertyRef Name="RacunID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -676,17 +654,6 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="SoloModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

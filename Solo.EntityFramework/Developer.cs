@@ -23,7 +23,7 @@ namespace Solo.EntityFramework
         public string RacunID { get; set; }
     
         public virtual Nalog Nalog { get; set; }
-        public virtual ICollection<RegistrovanProizvod> RegistrovanProizvods { get; set; }
         public virtual Racun Racun { get; set; }
+        public virtual ICollection<RegistrovanProizvod> RegistrovanProizvods { get; set; }
     }
 }
